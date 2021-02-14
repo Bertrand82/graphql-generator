@@ -1,0 +1,21 @@
+spring:
+  datasource: 
+    url: ${app.db.url}
+    driver-class-name: org.mariadb.jdbc.Driver
+    initialization-mode: always
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 50
+      idle-timeout : 30000
+    
+  jpa:    
+     database-platform: org.hibernate.dialect.MariaDBDialect
+     mapping-resources:
+        - orm-mapping.xml
+     hibernate:
+       ddl-auto: update
+       order_inserts: true
+       order_updates: true
+     properties:
+        hibernate:
+         globally_quoted_identifiers: true

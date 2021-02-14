@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: agrZorg 
+  profiles:
+    active: dev
+  data:
+    rest:
+      basePath: /api   
+    admin:
+      basePath: /admin   
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+    
+server:
+  port: 8081
+           
+---
+
+spring:
+  profiles: dev
+  jpa:    
+     show-sql: false    
+  
+app:
+  db: 
+    url: jdbc:mariadb://localhost:3306/databasebg3?user=root&password=bg
+  ldap: 
+    active: false  
+    url: ldap://localhost:10389/dc=agr82,dc=com  
+  client:
+    url: http://localhost:4200
+  
+logging:
+  level: 
+    root: info
+
+---
+
+   
+  

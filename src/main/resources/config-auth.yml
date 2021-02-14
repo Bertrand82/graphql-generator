@@ -1,0 +1,5 @@
+ldap:
+  active: ${app.ldap.active}
+  urls: ${app.ldap.url}
+  #username: uid=admin,ou=system
+  #password: secret

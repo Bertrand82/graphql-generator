@@ -1,0 +1,13 @@
+delete from databasebg3.app_roles;
+insert into databasebg3.app_roles VALUES ('admins', 'api_write');
+insert into databasebg3.app_roles VALUES ('admins', 'api_read');
+insert into databasebg3.app_roles VALUES ('admins', 'api_admin');
+insert into databasebg3.app_roles VALUES ('editors', 'api_write');
+insert into databasebg3.app_roles VALUES ('editors', 'api_read');
+insert into databasebg3.app_roles VALUES ('users', 'api_read');
+insert into databasebg3.app_roles VALUES ('admin', 'api_write');
+insert into databasebg3.app_roles VALUES ('admin', 'api_read');
+insert into databasebg3.app_roles VALUES ('admin', 'api_admin');
+insert into databasebg3.app_roles VALUES ('editor', 'api_write');
+insert into databasebg3.app_roles VALUES ('editor', 'api_read');
+insert into databasebg3.app_roles VALUES ('user', 'api_read');

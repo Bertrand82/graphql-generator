@@ -1,0 +1,1 @@
+create table if not exists databasebg3.app_roles(group_role varchar(255), app_role varchar(255));  
