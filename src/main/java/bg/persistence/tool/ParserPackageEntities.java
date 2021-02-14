@@ -43,14 +43,14 @@ public class ParserPackageEntities {
 	private Set<String> packageNameVersions = new HashSet();
 	private static Logger logger = Logger.getLogger(ParserPackageEntities.class.getName());
 	public ParserPackageEntities(String packageName) throws Exception {
-		logger.info("//  Parse package : >" + packageName + "<");
+		logger.info("------------------------------  Parse package : >" + packageName + "<");
 		this.packageName = packageName;
 		List<ClassGeneratorItem> listAll = parsePackageAllClasses();
 		extractPackage(listAll);
 		ManagerClassEntities.instance.setListAllClasses(listAll);
 		ManagerClassEntities.instance.processBasePojo(packageName);
 		int nbClasses = ManagerClassEntities.instance.getListBaseClassEntityItems().size();
-		logger.info("Nb Classes : " + nbClasses);
+		logger.info("------------------------------  Parse package : >" + packageName + "<  nbClasses:  " + nbClasses);
 		listAll.forEach((c)->logger.info("------------>  "+c));
 	}
 	

@@ -26,7 +26,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
-import bg.generated.graphql.model.Post;
+
 import bg.graphql.tool.util.BeanMethod;
 import bg.graphql.tool.util.JavaPoetHelper;
 
