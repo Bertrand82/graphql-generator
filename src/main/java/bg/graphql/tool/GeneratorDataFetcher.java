@@ -83,8 +83,6 @@ public class GeneratorDataFetcher {
 		    TypeSpec.Builder classBuilder = TypeSpec.classBuilder(s).addModifiers(Modifier.PUBLIC);
 			classBuilder.addAnnotation(annotation.build());
 			addMethodFetcher(classBuilder,typeName);
-			// @Autowired
-		    //private ShowRepository repository;
 			String nameTypeStr = JavaPoetHelper.getSimpleName(typeName);
 			/////
 			
@@ -113,22 +111,22 @@ public class GeneratorDataFetcher {
 		
 	}
 	
-	private static TypeName getReturnTypeSpan(Type typeReturn) {
+	private static TypeName getReturnTypeSpan(Type typeReturn, String packageName) {
 
 		if (typeReturn instanceof graphql.language.ListType) {
 			ListType listType = (ListType) typeReturn;
 			String typeNameList = ((graphql.language.TypeName) listType.getType()).getName();
 			ClassName typeName1 = ClassName.get(List.class);
-			TypeName typeName2 = ClassName.get(GeneratorClassType.packageName, typeNameList);
+			TypeName typeName2 = ClassName.get(packageName, typeNameList);
 			return typeName2;			
 		} else if (typeReturn instanceof graphql.language.TypeName) {
 			graphql.language.TypeName typeName = (graphql.language.TypeName) typeReturn;
-			TypeName typeName3 = ClassName.get(GeneratorClassType.packageName, typeName.getName());
+			TypeName typeName3 = ClassName.get(packageName, typeName.getName());
 			return typeName3;
 		}else if (typeReturn instanceof NonNullType) {
 			NonNullType lType = (NonNullType) typeReturn;
 			Type typeEmbeded  = lType.getType();
-			return getReturnTypeSpan(typeEmbeded);
+			return getReturnTypeSpan(typeEmbeded,packageName);
 		}
 		throw new RuntimeException("No typeName for "+typeReturn);
 	}
@@ -142,9 +140,10 @@ public class GeneratorDataFetcher {
 		for (InputValueDefinition input : fieldDefinition.getInputValueDefinitions()) {
 			String argumentName = input.getName() ;
 			listArgument.add(argumentName);
-			com.squareup.javapoet.TypeName argumentClassName = JavaPoetHelper.getClassNameFromGraphQlType(input.getType());
+			String pojoPackageName = Common.getSpringBaseRepository()+".pojo";
+			com.squareup.javapoet.TypeName argumentClassName = JavaPoetHelper.getClassNameFromGraphQlType(input.getType(),pojoPackageName);
 			AnnotationSpec.Builder argumentAnnotation = AnnotationSpec.builder(com.netflix.graphql.dgs.InputArgument.class);
-			argumentAnnotation.addMember("value", "\""+argumentName+"\"","");// field = "pouet"
+			argumentAnnotation.addMember("value", "\""+argumentName+"\"","");
 			TypeName argumentClassNameAnnoted = argumentClassName.annotated(argumentAnnotation.build());
 			
 			methodBuilder.addParameter(argumentClassNameAnnoted,argumentName);
@@ -157,7 +156,8 @@ public class GeneratorDataFetcher {
 		
 		methodBuilder.addAnnotation(annotationMethod.build());
 		TypeName retourTypeName_ = getReturn(fieldDefinition.getType());
-		TypeName retourTypeNameSpan = getReturnTypeSpan(fieldDefinition.getType());
+		String pojoPackageName = Common.getSpringBaseRepository()+".pojo";		
+		TypeName retourTypeNameSpan = getReturnTypeSpan(fieldDefinition.getType(),pojoPackageName);
 		boolean isRetourAsList = JavaPoetHelper.getReturnAsList(fieldDefinition.getType());
 		boolean isPageable=false;
 		methodBuilder.addStatement("$T oAsProbe  = new $T()",retourTypeNameSpan,retourTypeNameSpan);
@@ -181,10 +181,10 @@ public class GeneratorDataFetcher {
 			statement+=".withIgnoreCase(\""+argumentName+"\")";
 		}
 		methodBuilder.addStatement(statement, ExampleMatcher.class);
-		methodBuilder.addStatement("$T ex  = (Example.of(oAsProbe, exampleMatcher))", Example.class);
+		methodBuilder.addStatement("$T<$T> exampleRequest  = (Example.of(oAsProbe, exampleMatcher))", Example.class,retourTypeNameSpan);
 		if (isRetourAsList) {
 			if (isPageable) {
-				methodBuilder.addStatement(" $T<$T> page = repository.findAll(ex,pageable)", Page.class,retourTypeNameSpan);
+				methodBuilder.addStatement("$T<$T> page = repository.findAll(exampleRequest,pageable)", Page.class,retourTypeNameSpan);
 				methodBuilder.addStatement("return page.getContent()");
 			}else {
 			methodBuilder.addStatement("return repository.findAll(ex)");
@@ -199,12 +199,13 @@ public class GeneratorDataFetcher {
 
 
 /**
- * TODO Mutaliser avec 
+ * 
  * @param typeReturn
  * @return
  */
 	private static TypeName getReturn(Type typeReturn) {
-		return JavaPoetHelper.getClassNameFromGraphQlType(typeReturn);		
+		String pojoPackageName = Common.getSpringBaseRepository()+".pojo";
+		return JavaPoetHelper.getClassNameFromGraphQlType(typeReturn,pojoPackageName);		
 	}
 	
 

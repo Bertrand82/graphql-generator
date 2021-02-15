@@ -15,7 +15,7 @@ public class Main_2_ProcessEntities {
 	public static void main(String[] q) throws Exception{
 		File dSrcGenerated = new File("generated2");
 		dSrcGenerated.mkdirs();
-		ParserPackageEntities parserPackageEntities = new ParserPackageEntities(GeneratorClassType.packageName);
+		ParserPackageEntities parserPackageEntities = new ParserPackageEntities(PackageNameService.getPackageModelTemp());
 		parserPackageEntities.generateHibernateXMLMapping(dSrcGenerated);
 		parserPackageEntities.generateJavaSources(dSrcGenerated);
 	}

@@ -56,19 +56,17 @@ public class JavaPoetHelper {
 		return sLast;
 	}
 	
-	public static  com.squareup.javapoet.TypeName getClassNameFromGraphQlType(Type type) {
-		return getClassNameFromGraphQlType(type,GeneratorClassType.packageName);
-	}
+
 	public static  com.squareup.javapoet.TypeName getClassNameFromGraphQlType(Type type,String packageName) {
 		if (type instanceof graphql.language.TypeName) {
 			String typeStr= ((graphql.language.TypeName) type).getName();
 			return getClassNameFromNameStr(typeStr,packageName);
 		}else if (type instanceof NonNullType) {
 			Type type2 =  ((NonNullType) type).getType();
-			return getClassNameFromGraphQlType(type2);
+			return getClassNameFromGraphQlType(type2,packageName);
 		}else if (type instanceof ListType) {
 			ListType lType = (ListType) type;
-			com.squareup.javapoet.TypeName boxed = getClassNameFromGraphQlType(lType.getType());
+			com.squareup.javapoet.TypeName boxed = getClassNameFromGraphQlType(lType.getType(),packageName);
 			ParameterizedTypeName typeName = ParameterizedTypeName.get(ClassName.get(List.class),boxed);
 			
 			return typeName;
