@@ -1,4 +1,4 @@
-package bg.springboot.rest;
+package bg.springboot;
 
 import java.util.List;
 
@@ -6,22 +6,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.metamodel.Type;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-import org.springframework.data.rest.webmvc.alps.AlpsJsonHttpMessageConverter;
-import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
+import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ser.PropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 
 @Configuration
-public class RestConfiguration extends RepositoryRestConfigurerAdapter {
+
+public class RestConfiguration implements  RepositoryRestConfigurer {
 
     @Autowired
     private EntityManager entityManager;
@@ -35,10 +32,8 @@ public class RestConfiguration extends RepositoryRestConfigurerAdapter {
         config.setMaxPageSize(Integer.MAX_VALUE);
     }
     
-    @Override
-	public void configureJacksonObjectMapper(ObjectMapper objectMapper)	{
-		super.configureJacksonObjectMapper(objectMapper);
-	}
+  
+
     
     @Override
 	public void configureHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
@@ -51,12 +46,10 @@ public class RestConfiguration extends RepositoryRestConfigurerAdapter {
     			System.err.println("   xxxx ObjectMapper  "+a.getObjectMapper());
     			configureJacksonObjectMapper(a.getObjectMapper());
     		}
-    	}
-    	
-    	super.configureHttpMessageConverters(messageConverters);
+    	} 
     	
     }
-    
-    
+  
+   
     
 }

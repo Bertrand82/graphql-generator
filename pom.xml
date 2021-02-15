@@ -8,15 +8,32 @@
 	<properties>
 		<maven.compiler.source>13</maven.compiler.source>
 		<maven.compiler.target>13</maven.compiler.target>
-		
-		
+		<swagger2markup.version>1.2.0</swagger2markup.version>
+		<asciidoctor.input.directory>${project.basedir}/src/docs/api/asciidoc</asciidoctor.input.directory>
+
+		<swagger.output.dir>${project.build.directory}/swagger</swagger.output.dir>
+		<swagger.snippetOutput.dir>${project.build.directory}/asciidoc/snippets</swagger.snippetOutput.dir>
+		<generated.asciidoc.directory>${project.build.directory}/asciidoc/generated</generated.asciidoc.directory>
+		<asciidoctor.html.output.directory>${project.basedir}/src/main/resources/docs/api</asciidoctor.html.output.directory>
+		<asciidoctor.pdf.output.directory>${project.basedir}/src/main/resources/docs/api</asciidoctor.pdf.output.directory>
+
+		<swagger.input>${project.basedir}/src/docs/api/swagger.json</swagger.input>
+
 	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
-				<!--  version>2.0.5.RELEASE</version -->
+				<!-- version>2.0.5.RELEASE</version -->
 				<version>2.3.8.RELEASE</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -29,6 +46,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,6 +72,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -157,5 +177,26 @@
 			<artifactId>javassist</artifactId>
 			<version>3.27.0-GA</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		
+
 	</dependencies>
 </project>

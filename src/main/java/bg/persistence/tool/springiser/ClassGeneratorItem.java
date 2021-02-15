@@ -47,6 +47,7 @@ import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeSpec.Builder;
 
 import bg.graphql.tool.GeneratorClassType;
+import bg.graphql.tool.PackageNameService;
 import bg.persistence.tool.common.BaseEntity;
 
 
@@ -162,7 +163,7 @@ public class ClassGeneratorItem {
 			String name = getFieldName(field);
 
 			FieldSpec fieldSpec;
-			if (field.getGenericType().getTypeName().indexOf(GeneratorClassType.packageName) > 0) {
+			if (field.getGenericType().getTypeName().indexOf(PackageNameService.getPackageModelTemp()) > 0) {
 				FieldSpec.Builder fieldSpecBuilder;
 				if (field.getGenericType() instanceof Class) {
 					Class<?> c = (Class<?>) field.getGenericType();

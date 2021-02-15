@@ -1,0 +1,7753 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "This API provides management tools of an airport monitoring information system",
+		"version": "1.0",
+		"title": "API monitoring"
+	},
+	"host": "localhost:8081",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "Aircraft Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "AircraftType Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Apron Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Area Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Arrival Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Atv Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Departure Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Equipment Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Event Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Flight Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "GeoElement Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Model Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "ModelElement Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Stand Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "Terminal Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "TraitmentEquipement Entity",
+			"description": "Simple Jpa Repository"
+		},
+		{
+			"name": "admin-controller",
+			"description": "Admin Controller"
+		},
+		{
+			"name": "aircraft-type-history-controler",
+			"description": "Aircraft Type History Controler"
+		},
+		{
+			"name": "arrival-history-controler",
+			"description": "Arrival History Controler"
+		},
+		{
+			"name": "departure-history-controler",
+			"description": "Departure History Controler"
+		},
+		{
+			"name": "geo-element-history-controler",
+			"description": "Geo Element History Controler"
+		},
+		{
+			"name": "profile-controller",
+			"description": "Profile Controller"
+		}
+	],
+	"paths": {
+		"/admin/data/{entity}/{date}": {
+			"delete": {
+				"tags": [
+					"admin-controller"
+				],
+				"summary": "deleteData",
+				"operationId": "deleteDataUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "date",
+						"in": "path",
+						"description": "date",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "entity",
+						"in": "path",
+						"description": "entity",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "string"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/admin/schema/{table}/{column}": {
+			"delete": {
+				"tags": [
+					"admin-controller"
+				],
+				"summary": "dropColumn",
+				"operationId": "dropColumnUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "column",
+						"in": "path",
+						"description": "column",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "table",
+						"in": "path",
+						"description": "table",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aircraftTypes": {
+			"get": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "findAllAircraftType",
+				"operationId": "findAllAircraftTypeUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«AircraftType»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "saveAircraftType",
+				"operationId": "saveAircraftTypeUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AircraftType"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«AircraftType»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aircraftTypes/{id}": {
+			"get": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "findByIdAircraftType",
+				"operationId": "findByIdAircraftTypeUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«AircraftType»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "saveAircraftType",
+				"operationId": "saveAircraftTypeUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AircraftType"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«AircraftType»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "deleteAircraftType",
+				"operationId": "deleteAircraftTypeUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"AircraftType Entity"
+				],
+				"summary": "saveAircraftType",
+				"operationId": "saveAircraftTypeUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/AircraftType"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«AircraftType»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aircrafts": {
+			"get": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "findAllAircraft",
+				"operationId": "findAllAircraftUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Aircraft»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "saveAircraft",
+				"operationId": "saveAircraftUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Aircraft"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Aircraft»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aircrafts/{id}": {
+			"get": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "findByIdAircraft",
+				"operationId": "findByIdAircraftUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Aircraft»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "saveAircraft",
+				"operationId": "saveAircraftUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Aircraft"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Aircraft»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "deleteAircraft",
+				"operationId": "deleteAircraftUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Aircraft Entity"
+				],
+				"summary": "saveAircraft",
+				"operationId": "saveAircraftUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Aircraft"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Aircraft»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aprons": {
+			"get": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "findAllApron",
+				"operationId": "findAllApronUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Apron»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "saveApron",
+				"operationId": "saveApronUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Apron"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Apron»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/aprons/{id}": {
+			"get": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "findByIdApron",
+				"operationId": "findByIdApronUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Apron»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "saveApron",
+				"operationId": "saveApronUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Apron"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Apron»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "deleteApron",
+				"operationId": "deleteApronUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Apron Entity"
+				],
+				"summary": "saveApron",
+				"operationId": "saveApronUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Apron"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Apron»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/areas": {
+			"get": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "findAllArea",
+				"operationId": "findAllAreaUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Area»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "saveArea",
+				"operationId": "saveAreaUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Area"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Area»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/areas/{id}": {
+			"get": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "findByIdArea",
+				"operationId": "findByIdAreaUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Area»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "saveArea",
+				"operationId": "saveAreaUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Area"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Area»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "deleteArea",
+				"operationId": "deleteAreaUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Area Entity"
+				],
+				"summary": "saveArea",
+				"operationId": "saveAreaUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Area"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Area»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/arrivals": {
+			"get": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "findAllArrival",
+				"operationId": "findAllArrivalUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Arrival»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "saveArrival",
+				"operationId": "saveArrivalUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Arrival"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Arrival»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/arrivals/search/findBycallsignContaining": {
+			"get": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "findBycallsignContainingArrival",
+				"operationId": "findBycallsignContainingArrivalUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "callsign",
+						"in": "query",
+						"description": "callsign",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Arrival»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/arrivals/search/findByifplIDContaining": {
+			"get": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "findByifplIDContainingArrival",
+				"operationId": "findByifplIDContainingArrivalUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "ifplID",
+						"in": "query",
+						"description": "ifplID",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Arrival»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/arrivals/{id}": {
+			"get": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "findByIdArrival",
+				"operationId": "findByIdArrivalUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Arrival»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "saveArrival",
+				"operationId": "saveArrivalUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Arrival"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Arrival»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "deleteArrival",
+				"operationId": "deleteArrivalUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Arrival Entity"
+				],
+				"summary": "saveArrival",
+				"operationId": "saveArrivalUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Arrival"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Arrival»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/atvs": {
+			"get": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "findAllAtv",
+				"operationId": "findAllAtvUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Atv»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "saveAtv",
+				"operationId": "saveAtvUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Atv"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Atv»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/atvs/{id}": {
+			"get": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "findByIdAtv",
+				"operationId": "findByIdAtvUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Atv»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "saveAtv",
+				"operationId": "saveAtvUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Atv"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Atv»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "deleteAtv",
+				"operationId": "deleteAtvUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Atv Entity"
+				],
+				"summary": "saveAtv",
+				"operationId": "saveAtvUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Atv"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Atv»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/departures": {
+			"get": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "findAllDeparture",
+				"operationId": "findAllDepartureUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Departure»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "saveDeparture",
+				"operationId": "saveDepartureUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Departure"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Departure»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/departures/search/findBycallsignContaining": {
+			"get": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "findBycallsignContainingDeparture",
+				"operationId": "findBycallsignContainingDepartureUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "callsign",
+						"in": "query",
+						"description": "callsign",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Departure»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/departures/search/findByifplIDContaining": {
+			"get": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "findByifplIDContainingDeparture",
+				"operationId": "findByifplIDContainingDepartureUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "ifplID",
+						"in": "query",
+						"description": "ifplID",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "page",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"required": false,
+						"type": "integer",
+						"format": "int32"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Departure»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/departures/{id}": {
+			"get": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "findByIdDeparture",
+				"operationId": "findByIdDepartureUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Departure»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "saveDeparture",
+				"operationId": "saveDepartureUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Departure"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Departure»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "deleteDeparture",
+				"operationId": "deleteDepartureUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Departure Entity"
+				],
+				"summary": "saveDeparture",
+				"operationId": "saveDepartureUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Departure"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Departure»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/equipments": {
+			"get": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "findAllEquipment",
+				"operationId": "findAllEquipmentUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Equipment»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "saveEquipment",
+				"operationId": "saveEquipmentUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Equipment"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Equipment»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/equipments/{id}": {
+			"get": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "findByIdEquipment",
+				"operationId": "findByIdEquipmentUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Equipment»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "saveEquipment",
+				"operationId": "saveEquipmentUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Equipment"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Equipment»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "deleteEquipment",
+				"operationId": "deleteEquipmentUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Equipment Entity"
+				],
+				"summary": "saveEquipment",
+				"operationId": "saveEquipmentUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Equipment"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Equipment»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/events": {
+			"get": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "findAllEvent",
+				"operationId": "findAllEventUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Event»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "saveEvent",
+				"operationId": "saveEventUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Event»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/events/{id}": {
+			"get": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "findByIdEvent",
+				"operationId": "findByIdEventUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Event»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "saveEvent",
+				"operationId": "saveEventUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Event»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "deleteEvent",
+				"operationId": "deleteEventUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Event Entity"
+				],
+				"summary": "saveEvent",
+				"operationId": "saveEventUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Event»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/flights": {
+			"get": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "findAllFlight",
+				"operationId": "findAllFlightUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Flight»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "saveFlight",
+				"operationId": "saveFlightUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Flight"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Flight»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/flights/{id}": {
+			"get": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "findByIdFlight",
+				"operationId": "findByIdFlightUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Flight»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "saveFlight",
+				"operationId": "saveFlightUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Flight"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Flight»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "deleteFlight",
+				"operationId": "deleteFlightUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Flight Entity"
+				],
+				"summary": "saveFlight",
+				"operationId": "saveFlightUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Flight"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Flight»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/geoElements": {
+			"get": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "findAllGeoElement",
+				"operationId": "findAllGeoElementUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«GeoElement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "saveGeoElement",
+				"operationId": "saveGeoElementUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/GeoElement"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«GeoElement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/geoElements/{id}": {
+			"get": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "findByIdGeoElement",
+				"operationId": "findByIdGeoElementUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«GeoElement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "saveGeoElement",
+				"operationId": "saveGeoElementUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/GeoElement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«GeoElement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "deleteGeoElement",
+				"operationId": "deleteGeoElementUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"GeoElement Entity"
+				],
+				"summary": "saveGeoElement",
+				"operationId": "saveGeoElementUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/GeoElement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«GeoElement»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/modelElements": {
+			"get": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "findAllModelElement",
+				"operationId": "findAllModelElementUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«ModelElement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "saveModelElement",
+				"operationId": "saveModelElementUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ModelElement"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«ModelElement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/modelElements/{id}": {
+			"get": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "findByIdModelElement",
+				"operationId": "findByIdModelElementUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«ModelElement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "saveModelElement",
+				"operationId": "saveModelElementUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ModelElement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«ModelElement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "deleteModelElement",
+				"operationId": "deleteModelElementUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"ModelElement Entity"
+				],
+				"summary": "saveModelElement",
+				"operationId": "saveModelElementUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ModelElement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«ModelElement»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/models": {
+			"get": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "findAllModel",
+				"operationId": "findAllModelUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Model»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "saveModel",
+				"operationId": "saveModelUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Model"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Model»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/models/{id}": {
+			"get": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "findByIdModel",
+				"operationId": "findByIdModelUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Model»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "saveModel",
+				"operationId": "saveModelUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Model"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Model»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "deleteModel",
+				"operationId": "deleteModelUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Model Entity"
+				],
+				"summary": "saveModel",
+				"operationId": "saveModelUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Model"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Model»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/profile": {
+			"get": {
+				"tags": [
+					"profile-controller"
+				],
+				"summary": "listAllFormsOfMetadata",
+				"operationId": "listAllFormsOfMetadataUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ResourceSupport"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"options": {
+				"tags": [
+					"profile-controller"
+				],
+				"summary": "profileOptions",
+				"operationId": "profileOptionsUsingOPTIONS",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/stands": {
+			"get": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "findAllStand",
+				"operationId": "findAllStandUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Stand»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "saveStand",
+				"operationId": "saveStandUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Stand"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Stand»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/stands/{id}": {
+			"get": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "findByIdStand",
+				"operationId": "findByIdStandUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Stand»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "saveStand",
+				"operationId": "saveStandUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Stand"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Stand»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "deleteStand",
+				"operationId": "deleteStandUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Stand Entity"
+				],
+				"summary": "saveStand",
+				"operationId": "saveStandUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Stand"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Stand»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/terminals": {
+			"get": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "findAllTerminal",
+				"operationId": "findAllTerminalUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«Terminal»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "saveTerminal",
+				"operationId": "saveTerminalUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Terminal"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Terminal»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/terminals/{id}": {
+			"get": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "findByIdTerminal",
+				"operationId": "findByIdTerminalUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Terminal»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "saveTerminal",
+				"operationId": "saveTerminalUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Terminal"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Terminal»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "deleteTerminal",
+				"operationId": "deleteTerminalUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"Terminal Entity"
+				],
+				"summary": "saveTerminal",
+				"operationId": "saveTerminalUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Terminal"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«Terminal»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/traitmentEquipements": {
+			"get": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "findAllTraitmentEquipement",
+				"operationId": "findAllTraitmentEquipementUsingGET",
+				"produces": [
+					"application/json",
+					"application/hal+json",
+					"text/uri-list",
+					"application/x-spring-data-compact+json"
+				],
+				"parameters": [
+					{
+						"name": "page",
+						"in": "query",
+						"description": "page",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "size",
+						"in": "query",
+						"description": "size",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sort",
+						"in": "query",
+						"description": "sort",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resources«TraitmentEquipement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"post": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "saveTraitmentEquipement",
+				"operationId": "saveTraitmentEquipementUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TraitmentEquipement"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«TraitmentEquipement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/api/traitmentEquipements/{id}": {
+			"get": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "findByIdTraitmentEquipement",
+				"operationId": "findByIdTraitmentEquipementUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«TraitmentEquipement»"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"put": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "saveTraitmentEquipement",
+				"operationId": "saveTraitmentEquipementUsingPUT",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TraitmentEquipement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«TraitmentEquipement»"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			},
+			"delete": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "deleteTraitmentEquipement",
+				"operationId": "deleteTraitmentEquipementUsingDELETE",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			},
+			"patch": {
+				"tags": [
+					"TraitmentEquipement Entity"
+				],
+				"summary": "saveTraitmentEquipement",
+				"operationId": "saveTraitmentEquipementUsingPATCH",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"description": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TraitmentEquipement"
+						}
+					},
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Resource«TraitmentEquipement»"
+						}
+					},
+					"204": {
+						"description": "No Content"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/history/aircrafttype/{id}": {
+			"get": {
+				"tags": [
+					"aircraft-type-history-controler"
+				],
+				"summary": "getHistory",
+				"operationId": "getHistoryUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/AircraftType"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/history/arrival/{id}": {
+			"get": {
+				"tags": [
+					"arrival-history-controler"
+				],
+				"summary": "getHistory",
+				"operationId": "getHistoryUsingGET_1",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Arrival"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/history/departure/{id}": {
+			"get": {
+				"tags": [
+					"departure-history-controler"
+				],
+				"summary": "getHistory",
+				"operationId": "getHistoryUsingGET_2",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Departure"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/history/geoelement/{id}": {
+			"get": {
+				"tags": [
+					"geo-element-history-controler"
+				],
+				"summary": "getHistory",
+				"operationId": "getHistoryUsingGET_3",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "integer",
+						"format": "int64"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/GeoElement"
+							}
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"Aircraft": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nbSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"$ref": "#/definitions/AircraftType"
+				}
+			},
+			"title": "Aircraft"
+		},
+		"AircraftType": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"icao": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"length": {
+					"type": "number",
+					"format": "double"
+				},
+				"lowCostSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"nominalSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"type": "string"
+				},
+				"wingspan": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "AircraftType"
+		},
+		"Apron": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stands": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Stand"
+					}
+				},
+				"terminal": {
+					"$ref": "#/definitions/Terminal"
+				}
+			},
+			"title": "Apron"
+		},
+		"Area": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"equipments": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Equipment"
+					}
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nbPax": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"traitmentEquipements": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TraitmentEquipement"
+					}
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Area"
+		},
+		"Arrival": {
+			"type": "object",
+			"properties": {
+				"adep": {
+					"type": "string"
+				},
+				"aibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"airline": {
+					"type": "string"
+				},
+				"aldt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eldt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"sibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				}
+			},
+			"title": "Arrival"
+		},
+		"Atv": {
+			"type": "object",
+			"properties": {
+				"aircraft": {
+					"$ref": "#/definitions/Aircraft"
+				},
+				"arrival": {
+					"$ref": "#/definitions/Arrival"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"departure": {
+					"$ref": "#/definitions/Departure"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stand": {
+					"$ref": "#/definitions/Stand"
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"DBR",
+						"RDI",
+						"RPO",
+						"IBK",
+						"GOA",
+						"INI",
+						"FNL",
+						"TXI",
+						"DBC",
+						"RTN",
+						"CNX",
+						"IDH",
+						"TXO",
+						"BRD",
+						"DIV",
+						"BRC",
+						"TXOD",
+						"SCH",
+						"RDY",
+						"FIR",
+						"DEP",
+						"TMA",
+						"DEI",
+						"SBY",
+						"AIR"
+					]
+				}
+			},
+			"title": "Atv"
+		},
+		"Departure": {
+			"type": "object",
+			"properties": {
+				"ades": {
+					"type": "string"
+				},
+				"airline": {
+					"type": "string"
+				},
+				"aobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atot": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"etot": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"sobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"tobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"transferPax": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"title": "Departure"
+		},
+		"EmbeddedCollection«AircraftType»": {
+			"type": "object",
+			"required": [
+				"aircraftTypes"
+			],
+			"properties": {
+				"aircraftTypes": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/AircraftType"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«AircraftType»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of AircraftType"
+		},
+		"EmbeddedCollection«Aircraft»": {
+			"type": "object",
+			"required": [
+				"aircrafts"
+			],
+			"properties": {
+				"aircrafts": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Aircraft"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Aircraft»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Aircraft"
+		},
+		"EmbeddedCollection«Apron»": {
+			"type": "object",
+			"required": [
+				"aprons"
+			],
+			"properties": {
+				"aprons": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Apron"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Apron»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Apron"
+		},
+		"EmbeddedCollection«Area»": {
+			"type": "object",
+			"required": [
+				"areas"
+			],
+			"properties": {
+				"areas": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Area"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Area»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Area"
+		},
+		"EmbeddedCollection«Arrival»": {
+			"type": "object",
+			"required": [
+				"arrivals"
+			],
+			"properties": {
+				"arrivals": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Arrival"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Arrival»",
+			"description": "Embedded collection of Arrival"
+		},
+		"EmbeddedCollection«Atv»": {
+			"type": "object",
+			"required": [
+				"atvs"
+			],
+			"properties": {
+				"atvs": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Atv"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Atv»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Atv"
+		},
+		"EmbeddedCollection«Departure»": {
+			"type": "object",
+			"required": [
+				"departures"
+			],
+			"properties": {
+				"departures": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Departure"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Departure»",
+			"description": "Embedded collection of Departure"
+		},
+		"EmbeddedCollection«Equipment»": {
+			"type": "object",
+			"required": [
+				"equipments"
+			],
+			"properties": {
+				"equipments": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Equipment"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Equipment»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Equipment"
+		},
+		"EmbeddedCollection«Event»": {
+			"type": "object",
+			"required": [
+				"events"
+			],
+			"properties": {
+				"events": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Event»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Event"
+		},
+		"EmbeddedCollection«Flight»": {
+			"type": "object",
+			"required": [
+				"flights"
+			],
+			"properties": {
+				"flights": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Flight"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Flight»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Flight"
+		},
+		"EmbeddedCollection«GeoElement»": {
+			"type": "object",
+			"required": [
+				"geoElements"
+			],
+			"properties": {
+				"geoElements": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/GeoElement"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«GeoElement»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of GeoElement"
+		},
+		"EmbeddedCollection«ModelElement»": {
+			"type": "object",
+			"required": [
+				"modelElements"
+			],
+			"properties": {
+				"modelElements": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/ModelElement"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«ModelElement»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of ModelElement"
+		},
+		"EmbeddedCollection«Model»": {
+			"type": "object",
+			"required": [
+				"models"
+			],
+			"properties": {
+				"models": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Model"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Model»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Model"
+		},
+		"EmbeddedCollection«Stand»": {
+			"type": "object",
+			"required": [
+				"stands"
+			],
+			"properties": {
+				"stands": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Stand"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Stand»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Stand"
+		},
+		"EmbeddedCollection«Terminal»": {
+			"type": "object",
+			"required": [
+				"terminals"
+			],
+			"properties": {
+				"terminals": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/Terminal"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«Terminal»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of Terminal"
+		},
+		"EmbeddedCollection«TraitmentEquipement»": {
+			"type": "object",
+			"required": [
+				"traitmentEquipements"
+			],
+			"properties": {
+				"traitmentEquipements": {
+					"type": "array",
+					"description": "Resource collection",
+					"items": {
+						"$ref": "#/definitions/TraitmentEquipement"
+					}
+				}
+			},
+			"title": "EmbeddedCollection«TraitmentEquipement»",
+			"xml": {
+				"name": "content",
+				"wrapped": true
+			},
+			"description": "Embedded collection of TraitmentEquipement"
+		},
+		"Equipment": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Equipment"
+		},
+		"Event": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "string"
+				},
+				"duration": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"element": {
+					"$ref": "#/definitions/ModelElement"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"location": {
+					"type": "string"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"type": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Event"
+		},
+		"Flight": {
+			"type": "object",
+			"properties": {
+				"airline": {
+					"type": "string"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				}
+			},
+			"title": "Flight"
+		},
+		"GeoElement": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "GeoElement"
+		},
+		"Link": {
+			"type": "object",
+			"properties": {
+				"deprecation": {
+					"type": "string",
+					"xml": {
+						"name": "deprecation",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"href": {
+					"type": "string",
+					"xml": {
+						"name": "href",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"hreflang": {
+					"type": "string",
+					"xml": {
+						"name": "hreflang",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"media": {
+					"type": "string",
+					"xml": {
+						"name": "media",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"rel": {
+					"type": "string",
+					"xml": {
+						"name": "rel",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"templated": {
+					"type": "boolean"
+				},
+				"title": {
+					"type": "string",
+					"xml": {
+						"name": "title",
+						"attribute": true,
+						"wrapped": false
+					}
+				},
+				"type": {
+					"type": "string",
+					"xml": {
+						"name": "type",
+						"attribute": true,
+						"wrapped": false
+					}
+				}
+			},
+			"title": "Link",
+			"xml": {
+				"name": "link",
+				"namespace": "http://www.w3.org/2005/Atom",
+				"attribute": false,
+				"wrapped": false
+			}
+		},
+		"Model": {
+			"type": "object",
+			"properties": {
+				"aircrafts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Aircraft"
+					}
+				},
+				"aircrafttype": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/AircraftType"
+					}
+				},
+				"allEvents": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"atvs": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Atv"
+					}
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"flights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Flight"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"terminals": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Terminal"
+					}
+				}
+			},
+			"title": "Model"
+		},
+		"ModelElement": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"title": "ModelElement"
+		},
+		"ResourceSupport": {
+			"type": "object",
+			"properties": {
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "ResourceSupport"
+		},
+		"Resources«AircraftType»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«AircraftType»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«AircraftType»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of AircraftType"
+		},
+		"Resources«Aircraft»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Aircraft»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Aircraft»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Aircraft"
+		},
+		"Resources«Apron»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Apron»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Apron»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Apron"
+		},
+		"Resources«Area»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Area»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Area»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Area"
+		},
+		"Resources«Arrival»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Arrival»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Arrival»",
+			"description": "Resources of Arrival"
+		},
+		"Resources«Atv»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Atv»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Atv»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Atv"
+		},
+		"Resources«Departure»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Departure»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Departure»",
+			"description": "Resources of Departure"
+		},
+		"Resources«Equipment»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Equipment»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Equipment»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Equipment"
+		},
+		"Resources«Event»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Event»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Event»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Event"
+		},
+		"Resources«Flight»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Flight»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Flight»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Flight"
+		},
+		"Resources«GeoElement»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«GeoElement»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«GeoElement»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of GeoElement"
+		},
+		"Resources«ModelElement»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«ModelElement»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«ModelElement»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of ModelElement"
+		},
+		"Resources«Model»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Model»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Model»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Model"
+		},
+		"Resources«Stand»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Stand»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Stand»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Stand"
+		},
+		"Resources«Terminal»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«Terminal»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«Terminal»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of Terminal"
+		},
+		"Resources«TraitmentEquipement»": {
+			"type": "object",
+			"required": [
+				"_embedded",
+				"_links"
+			],
+			"properties": {
+				"_embedded": {
+					"$ref": "#/definitions/EmbeddedCollection«TraitmentEquipement»"
+				},
+				"_links": {
+					"type": "object",
+					"description": "Link collection",
+					"additionalProperties": {
+						"$ref": "#/definitions/Link"
+					}
+				}
+			},
+			"title": "Resources«TraitmentEquipement»",
+			"xml": {
+				"name": "entities",
+				"attribute": false,
+				"wrapped": false
+			},
+			"description": "Resources of TraitmentEquipement"
+		},
+		"Resource«AircraftType»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"fullName": {
+					"type": "string"
+				},
+				"icao": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"length": {
+					"type": "number",
+					"format": "double"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"lowCostSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"nominalSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"type": "string"
+				},
+				"wingspan": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«AircraftType»"
+		},
+		"Resource«Aircraft»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nbSeats": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"$ref": "#/definitions/AircraftType"
+				}
+			},
+			"title": "Resource«Aircraft»"
+		},
+		"Resource«Apron»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stands": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Stand"
+					}
+				},
+				"terminal": {
+					"$ref": "#/definitions/Terminal"
+				}
+			},
+			"title": "Resource«Apron»"
+		},
+		"Resource«Area»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"equipments": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Equipment"
+					}
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"nbPax": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"traitmentEquipements": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TraitmentEquipement"
+					}
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«Area»"
+		},
+		"Resource«Arrival»": {
+			"type": "object",
+			"properties": {
+				"adep": {
+					"type": "string"
+				},
+				"aibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"airline": {
+					"type": "string"
+				},
+				"aldt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eldt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"sibt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				}
+			},
+			"title": "Resource«Arrival»"
+		},
+		"Resource«Atv»": {
+			"type": "object",
+			"properties": {
+				"aircraft": {
+					"$ref": "#/definitions/Aircraft"
+				},
+				"arrival": {
+					"$ref": "#/definitions/Arrival"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"departure": {
+					"$ref": "#/definitions/Departure"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"stand": {
+					"$ref": "#/definitions/Stand"
+				},
+				"status": {
+					"type": "string",
+					"enum": [
+						"DBR",
+						"RDI",
+						"RPO",
+						"IBK",
+						"GOA",
+						"INI",
+						"FNL",
+						"TXI",
+						"DBC",
+						"RTN",
+						"CNX",
+						"IDH",
+						"TXO",
+						"BRD",
+						"DIV",
+						"BRC",
+						"TXOD",
+						"SCH",
+						"RDY",
+						"FIR",
+						"DEP",
+						"TMA",
+						"DEI",
+						"SBY",
+						"AIR"
+					]
+				}
+			},
+			"title": "Resource«Atv»"
+		},
+		"Resource«Departure»": {
+			"type": "object",
+			"properties": {
+				"ades": {
+					"type": "string"
+				},
+				"airline": {
+					"type": "string"
+				},
+				"aobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atot": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"eobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"etot": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"sobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"tobt": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"transferPax": {
+					"type": "integer",
+					"format": "int32"
+				}
+			},
+			"title": "Resource«Departure»"
+		},
+		"Resource«Equipment»": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«Equipment»"
+		},
+		"Resource«Event»": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"description": {
+					"type": "string"
+				},
+				"duration": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"element": {
+					"$ref": "#/definitions/ModelElement"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"location": {
+					"type": "string"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"start": {
+					"type": "string"
+				},
+				"type": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«Event»"
+		},
+		"Resource«Flight»": {
+			"type": "object",
+			"properties": {
+				"airline": {
+					"type": "string"
+				},
+				"atv": {
+					"$ref": "#/definitions/Atv"
+				},
+				"callsign": {
+					"type": "string"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"gate": {
+					"type": "string"
+				},
+				"iataNumber": {
+					"type": "string"
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"ifplID": {
+					"type": "string"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"paxCount": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"runway": {
+					"type": "string"
+				},
+				"taxiTime": {
+					"type": "integer",
+					"format": "int64"
+				}
+			},
+			"title": "Resource«Flight»"
+		},
+		"Resource«GeoElement»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«GeoElement»"
+		},
+		"Resource«ModelElement»": {
+			"type": "object",
+			"properties": {
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"title": "Resource«ModelElement»"
+		},
+		"Resource«Model»": {
+			"type": "object",
+			"properties": {
+				"aircrafts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Aircraft"
+					}
+				},
+				"aircrafttype": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/AircraftType"
+					}
+				},
+				"allEvents": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"atvs": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Atv"
+					}
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"flights": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Flight"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"terminals": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Terminal"
+					}
+				}
+			},
+			"title": "Resource«Model»"
+		},
+		"Resource«Stand»": {
+			"type": "object",
+			"properties": {
+				"apron": {
+					"$ref": "#/definitions/Apron"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"size": {
+					"type": "number",
+					"format": "double"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«Stand»"
+		},
+		"Resource«Terminal»": {
+			"type": "object",
+			"properties": {
+				"aprons": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Apron"
+					}
+				},
+				"areas": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Area"
+					}
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«Terminal»"
+		},
+		"Resource«TraitmentEquipement»": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"inFlow": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"links": {
+					"type": "array",
+					"xml": {
+						"name": "link",
+						"namespace": "http://www.w3.org/2005/Atom",
+						"attribute": false,
+						"wrapped": false
+					},
+					"items": {
+						"$ref": "#/definitions/Link"
+					}
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"outFlow": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"type": "string"
+				},
+				"waitingTime": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Resource«TraitmentEquipement»"
+		},
+		"Stand": {
+			"type": "object",
+			"properties": {
+				"apron": {
+					"$ref": "#/definitions/Apron"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"size": {
+					"type": "number",
+					"format": "double"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Stand"
+		},
+		"Terminal": {
+			"type": "object",
+			"properties": {
+				"aprons": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Apron"
+					}
+				},
+				"areas": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Area"
+					}
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "Terminal"
+		},
+		"TraitmentEquipement": {
+			"type": "object",
+			"properties": {
+				"active": {
+					"type": "boolean"
+				},
+				"creationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"events": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"id": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"inFlow": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"modificationTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"name": {
+					"type": "string"
+				},
+				"outFlow": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"type": {
+					"type": "string"
+				},
+				"waitingTime": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"x": {
+					"type": "number",
+					"format": "double"
+				},
+				"y": {
+					"type": "number",
+					"format": "double"
+				}
+			},
+			"title": "TraitmentEquipement"
+		}
+	}
+}

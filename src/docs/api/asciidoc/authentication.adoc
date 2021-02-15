@@ -1,0 +1,52 @@
+== Authentication
+
+=== Header
+
+All services are rights protected, an authentication token must always be provided in the request header as follows
+
+....
+Authorization: token
+....
+
+=== Token
+
+Fetching the requested authentication token is done through the below service
+
+==== Url
+
+....
+POST /login
+....
+
+==== Parameters
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|Type|Name|Description|Schema
+|**String**|**username** +
+__required__|username|string
+|**String**|**password** +
+__required__|password|string
+|===
+
+==== Responses
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|The token
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `application/json`
+
+

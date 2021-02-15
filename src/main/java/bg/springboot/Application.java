@@ -14,7 +14,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = { "bg.spring.generated.pojo", "bg.spring.generated.controller",
-		"bg.spring.generated.repository" })
+		"bg.spring.generated.repository","bg.springboot","bg.springboot.infos" })
 @EnableJpaAuditing
 public class Application implements WebSocketMessageBrokerConfigurer {
 
