@@ -9,9 +9,10 @@ Transformation 3: Generate spring graphQl Endpoint from Query and Mutation of gr
 In fact, the model is useless. Its goal is only to generate the Spring application. 
 
 # test
-* http://localhost:8081/api
-* http://localhost:8081/graphiql
+* http://localhost:8081/api2
+* http://localhost:8081/graphiql interface graphique graphQL
 * http://localhost:8081/graphql
+* http://localhost:8080/welcome diverses infos
 
 #Documentation
 

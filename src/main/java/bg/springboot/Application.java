@@ -1,8 +1,15 @@
 package bg.springboot;
 
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -13,15 +20,27 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableJpaRepositories(basePackages = { "bg.spring.generated.pojo", "bg.spring.generated.controller",
-		"bg.spring.generated.repository","bg.springboot","bg.springboot.infos" })
+@EnableJpaRepositories(basePackages = { "bg.spring.generated"})
+@ComponentScan(basePackages = { "bg.spring.generated", "bg.springboot"})
 @EnableJpaAuditing
 public class Application implements WebSocketMessageBrokerConfigurer {
 
+	
+	
+	
+	
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(Application.class)
+		SpringApplication springApplication = new SpringApplicationBuilder(Application.class)
 				.properties(getProperties())
-				.build().run(args);
+				.build();
+		ConfigurableApplicationContext context = springApplication.run(args);
+		
+		String[] beanNames = context.getBeanDefinitionNames();
+		Arrays.sort(beanNames);
+		for (String beanName : beanNames) {
+			System.out.println("bg beanName ------------------------------"+beanName);
+		}
+		
 	}
 
 	private static String getProperties() {

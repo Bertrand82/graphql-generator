@@ -11,17 +11,17 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
-      
+ 
     
 server:
   port: 8080
-           
+   
 ---
 
 spring:
   profiles: dev
   jpa:    
-     show-sql: false    
+     show-sql: true    
   
 app:
   db: 
