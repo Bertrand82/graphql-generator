@@ -13,6 +13,8 @@ In fact, the model is useless. Its goal is only to generate the Spring applicati
 * http://localhost:8081/graphiql interface graphique graphQL
 * http://localhost:8081/graphql
 * http://localhost:8080/welcome diverses infos
+* http://localhost:8080/v2/api-docs swagger endpoint
+* http://localhost:8080/swagger-ui/index.html swagger ui
 
 #Documentation
 

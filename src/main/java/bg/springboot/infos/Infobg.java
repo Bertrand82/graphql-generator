@@ -18,7 +18,12 @@ public class Infobg {
 	
 	@RequestMapping("/welcome")
 	public String index() {
-		return "Application de test de generation de graphQL  data.rest.base-path: "+basePath;
+		return "Application de test de generation de graphQL\n"
+				+" #  data.rest.base-path : "+basePath+"\n"
+				+" #  data.rest.base-path : "+basePath+"\n"
+				+" #  graphiql /graphiql"
+				+" # swagger ui :   /swagger-ui/index.html \n";
+				
 	}
 	
 	@RequestMapping("/version")
