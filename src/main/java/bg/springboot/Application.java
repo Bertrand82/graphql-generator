@@ -21,7 +21,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = { "bg.spring.generated"})
-@ComponentScan(basePackages = { "bg.spring.generated", "bg.springboot"})
+@ComponentScan(basePackages = { "bg.spring.generated", "bg.springboot","bg.generated.graphql"})
 @EnableJpaAuditing
 public class Application implements WebSocketMessageBrokerConfigurer {
 
@@ -38,7 +38,7 @@ public class Application implements WebSocketMessageBrokerConfigurer {
 		String[] beanNames = context.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {
-			//System.out.println("bg beanName ------------------------------"+beanName);
+			System.out.println("bg beanName ------------------------------"+beanName);
 		}
 		
 	}

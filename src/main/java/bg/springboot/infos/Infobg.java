@@ -19,10 +19,10 @@ public class Infobg {
 	@RequestMapping("/welcome")
 	public String index() {
 		return "Application de test de generation de graphQL\n"
-				+" #  data.rest.base-path : "+basePath+"\n"
-				+" #  data.rest.base-path : "+basePath+"\n"
-				+" #  graphiql /graphiql"
-				+" # swagger ui :   /swagger-ui/index.html \n";
+				+"<br/> #  data.rest.base-path : "+basePath+"\n"
+				+"<br/> #  data.rest.base-path : "+basePath+"\n"
+				+"<br/> #  graphiql /graphiql \n"
+				+"<br/> # swagger ui :   /swagger-ui/index.html \n";
 				
 	}
 	
