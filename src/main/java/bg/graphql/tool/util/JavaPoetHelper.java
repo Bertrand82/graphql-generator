@@ -50,7 +50,6 @@ public class JavaPoetHelper {
 
 	public static String getSimpleName(TypeName typeName) {
 		String s = typeName.toString();
-		System.err.println("getSimpleName "+s);
 		int i =s.lastIndexOf(".");
 		String sLast = s.substring(i+1);
 		return sLast;

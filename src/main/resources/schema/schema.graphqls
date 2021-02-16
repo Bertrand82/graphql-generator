@@ -6,6 +6,13 @@ type Post {
     author: Author!
 }
 
+type Bidon {   
+    title: String!
+    text: String!
+    category: String
+    author: Author!
+}
+
 type Author {
     id: ID!
     name: String!

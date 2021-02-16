@@ -31,11 +31,12 @@ public class GeneratorClassType {
 
 	ObjectTypeDefinition objectTypeDefinition;
 	final TypeSpec.Builder classBuilder;
-	
+	String classSimpleName;
 	public GeneratorClassType(ObjectTypeDefinition oDefinition) throws Exception {
 		this.objectTypeDefinition = oDefinition;
+		classSimpleName=objectTypeDefinition.getName();
 		//AnnotationSpec.Builder annotationBuilder = AnnotationSpec.builder(Entity.class);
-		classBuilder = TypeSpec.classBuilder(  objectTypeDefinition.getName()).addModifiers(Modifier.PUBLIC);
+		classBuilder = TypeSpec.classBuilder(  classSimpleName).addModifiers(Modifier.PUBLIC);
 		//classBuilder.addAnnotation(annotationBuilder.build());
 		for (FieldDefinition fieldDefinition : objectTypeDefinition.getFieldDefinitions()) {
 			generateField(fieldDefinition);
@@ -94,38 +95,13 @@ public class GeneratorClassType {
 			return getClassNameFromType(type2);
 		}else if (type instanceof ListType) {
 			ListType lType = (ListType) type;
-			System.out.println("Listxxx A "+lType);
-			System.out.println("Listxxx B "+getClassNameFromType(lType.getType()));
 			String boxed = getClassNameFromType(lType.getType());
 			return List.class.getName()+"<"+boxed+">";
 		}
 		throw new RuntimeException("No class name  for :"+type);
 	
 	}
-// com.squareup.javapoet.TypeName
-	@Deprecated
-	public static com.squareup.javapoet.TypeName getClassNameFromName_(String name){
-		if (name.equalsIgnoreCase("String")) {
-			return ClassName.get(String.class);
-		} else if (name.equalsIgnoreCase("Int")) {
-			return ClassName.INT;
-		} else if (name.equalsIgnoreCase("Float")) {
-			return ClassName.get(Float.class);
-		} else if (name.equalsIgnoreCase("Boolean")) {
-			return ClassName.get(Boolean.class);
-		} else if (name.equalsIgnoreCase("ID")) {
-			return ClassName.get(String.class);
-		} else if (name.equalsIgnoreCase("Date")) {
-			return ClassName.get(Long.class);
-		}else if (name.startsWith(List.class.getName())) {
-			ParameterizedTypeName typeName = ParameterizedTypeName.get(ClassName.get(List.class),ClassName.get( String.class));
-			
-			return typeName;
-		}else {
-			return ClassName.get(PackageNameService.getPackageModelTemp(),name);
-		}
-		
-	}
+
 
 	public JavaFile getJavaFileGenerator(String comment2) {
 

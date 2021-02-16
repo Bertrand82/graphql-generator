@@ -267,8 +267,7 @@ public class ParserPackageEntities {
 		for (File directory : dirs) {
 			classes.addAll(findClassesInDirectory(directory, packageName));
 		}
-		System.err.println("classes.size " + classes.size());
-
+		
 		return classes;
 	}
 

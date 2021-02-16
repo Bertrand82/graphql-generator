@@ -143,8 +143,8 @@ public class HibernateClass {
 		
 		@XmlAttribute(name = "name")
 		String name = "id";
-		//@XmlElement(name = "generated-value")
-		//Generator_H generator = new Generator_H();
+		@XmlElement(name = "generated-value")
+		Generator_H generator = new Generator_H();
 	}
 
 	
@@ -152,8 +152,7 @@ public class HibernateClass {
 	private static class Generator_H {
 
 		@XmlAttribute(name = "strategy")
-		String name = null;//"IDENTITY" ; //"SEQUENCE";
-
+		String name = null;//"IDENTITY" ; //"SEQUENCE";// "AUTO"
 	}
 
 	private static String getSimpleTypeFromField(Field f) {

@@ -38,7 +38,7 @@ public class Application implements WebSocketMessageBrokerConfigurer {
 		String[] beanNames = context.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {
-			System.out.println("bg beanName ------------------------------"+beanName);
+			//System.out.println("bg beanName ------------------------------"+beanName);
 		}
 		
 	}

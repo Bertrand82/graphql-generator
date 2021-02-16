@@ -37,13 +37,10 @@ public class RestConfiguration implements  RepositoryRestConfigurer {
     
     @Override
 	public void configureHttpMessageConverters(List<HttpMessageConverter<?>> messageConverters) {
-    	System.err.println("       --------------------" +messageConverters);
     	for (HttpMessageConverter<?> m :messageConverters) {
-    		System.err.println("-----" +m +"   -- ");
-
+    		
     		if (m instanceof AbstractJackson2HttpMessageConverter) {
     			AbstractJackson2HttpMessageConverter a = (AbstractJackson2HttpMessageConverter) m;
-    			System.err.println("   xxxx ObjectMapper  "+a.getObjectMapper());
     			configureJacksonObjectMapper(a.getObjectMapper());
     		}
     	} 

@@ -21,7 +21,6 @@ public class Main_1_ToolProcessSchemaGraphQL {
  */
 	public static void main(String[] args) throws Exception {
 		String sGraphQls = Files.readString(Paths.get(Main_1_ToolProcessSchemaGraphQL.class.getResource("/schema/schema.graphqls").toURI()));
-		System.out.println("Start " + sGraphQls);
 		new GeneratorClassesFromGraphQL("/schema/schema.graphqls");
 		
 
