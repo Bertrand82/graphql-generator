@@ -20,6 +20,19 @@
 		<swagger.input>${project.basedir}/src/docs/api/swagger.json</swagger.input>
 
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>1</id>
+			<url>https://mvnrepository.com/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>bintray</name>
+			<url>https://jcenter.bintray.com</url>
+		</repository>		
+	</repositories>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -110,12 +123,17 @@
 		<dependency>
 			<groupId>com.netflix.graphql.dgs</groupId>
 			<artifactId>graphql-dgs-spring-boot-starter</artifactId>
-			<version>3.2.0</version>
+			<version>3.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>graphql-java-tools</artifactId>
 			<version>11.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.apollographql.federation</groupId>
+			<artifactId>federation-graphql-java-support</artifactId>
+			<version>0.6.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.squareup/javapoet -->
 		<dependency>
@@ -177,12 +195,12 @@
 			<artifactId>javassist</artifactId>
 			<version>3.27.0-GA</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -196,7 +214,7 @@
 			<version>3.0.0</version>
 		</dependency>
 
-		
+
 
 	</dependencies>
 </project>
