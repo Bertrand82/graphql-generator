@@ -188,7 +188,6 @@ public class GeneratorDataFetcher {
 
 	private void processMutationMethod(MethodSpec.Builder methodBuilder, TypeName retourTypeNameSpan,
 			 boolean isRetourAsList, List<ArgumentHelper> listArgument, TypeName retourTypeName_) {
-		System.err.println("processMutationMethod --------------------------------------   ");
 		methodBuilder.addStatement("$T oNew  = new $T()", retourTypeNameSpan, retourTypeNameSpan);
 		int i=0;
 		for (ArgumentHelper helper : listArgument) {

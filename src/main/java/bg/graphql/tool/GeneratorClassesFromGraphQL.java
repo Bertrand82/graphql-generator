@@ -19,10 +19,16 @@ import graphql.parser.Parser;
 public class GeneratorClassesFromGraphQL {
 	public String pathSchemagraphQl;
 	List<GeneratorClassType> listGeneratorClassType = new ArrayList<GeneratorClassType>();
-	JavaPoetWriter javapoetWritter = new JavaPoetWriter(new File("generated1"));
+	File dirOut = new File("generated1");
+	JavaPoetWriter javapoetWritter = new JavaPoetWriter(dirOut);
 
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl) throws Exception {
+		System.out.println("Start processing graphQl "+pathSchemagraphQl);
 		this.pathSchemagraphQl=pathSchemagraphQl;
+		init();
+		System.out.println("end   dir out : "+dirOut.getPath());
+	}
+	private void init() throws Exception{
 		InputStream inStream = GeneratorClassesFromGraphQL.class.getResourceAsStream(pathSchemagraphQl);
 		Reader readerSchema = new InputStreamReader(inStream);
 		Parser parser = new Parser();
@@ -58,9 +64,7 @@ public class GeneratorClassesFromGraphQL {
 
 	public boolean isFieldPrimitif(TypeName retourTypeNameSpan, String argumentName) {
 		String cArgumentName = JavaPoetHelper.capitalizeFirstLetter(argumentName);
-		System.err.println(" cArgumentName "+cArgumentName+" list.size  "+listGeneratorClassType.size());
 		for(GeneratorClassType generatorType :this.listGeneratorClassType) {
-			System.err.println(" cArgumentName "+cArgumentName+"  "+generatorType.classSimpleName);
 			if(generatorType.classSimpleName.equals(cArgumentName)){
 				return false;
 			}
