@@ -14,6 +14,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlValue;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import bg.persistence.tool.springiser.ClassGeneratorItem;
 
 
@@ -145,6 +147,9 @@ public class HibernateClass {
 		String name = "id";
 		@XmlElement(name = "generated-value")
 		Generator_H generator = new Generator_H();
+		// @GenericGenerator
+		//@XmlElement(name = "GenericGenerator")
+		//GenericGenerator_H genericGenerator = new GenericGenerator_H();
 	}
 
 	
@@ -152,9 +157,18 @@ public class HibernateClass {
 	private static class Generator_H {
 
 		@XmlAttribute(name = "strategy")
-		String name = null;//"IDENTITY" ; //"SEQUENCE";// "AUTO"
+		String name = "IDENTITY";//"IDENTITY" ; //"SEQUENCE";// "AUTO"
 	}
+	//bg    @GenericGenerator(
+    //name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
+	private static class GenericGenerator_H {
 
+		@XmlAttribute(name = "name")
+		String name = "UUID";
+		
+		@XmlAttribute(name = "strategy")
+		String strategy = "org.hibernate.id.UUIDGenerator";
+	}
 	private static String getSimpleTypeFromField(Field f) {
 		if (f.getName().equalsIgnoreCase("id")) {
 			return null;
@@ -271,8 +285,8 @@ public class HibernateClass {
 	}
 
 	private static class Attributes {
-		@XmlElement
-		ID_H id = new ID_H();
+		//@XmlElement
+		//ID_H id = new ID_H();
 
 		@XmlElement(name = "basic")
 		List<Field_H> listFields = new ArrayList<>();

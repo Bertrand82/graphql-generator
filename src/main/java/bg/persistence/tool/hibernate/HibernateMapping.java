@@ -12,16 +12,16 @@ public class HibernateMapping {
 
 	private List<HibernateClass> listClass = new ArrayList<>();
 	@XmlAttribute(name = "xmlns")
-	private String xmlns = "http://java.sun.com/xml/ns/persistence/orm";
+	private String xmlns = "http://xmlns.jcp.org/xml/ns/persistence/orm";
 	
 	@XmlAttribute(name = "xmlns:xsi")
 	private String xmlns_xsi = "http://www.w3.org/2001/XMLSchema-instance";
 
 	@XmlAttribute(name = "xsi:schemaLocation")
-	private String xsi_schemaLocation = "http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd";
+	private String xsi_schemaLocation = "http://xmlns.jcp.org/xml/ns/persistence/orm https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/orm_2_2.xsd";
 
 	@XmlAttribute(name = "version")
-	private String version="1.0";
+	private String version="2.2";
 
 	String packageStr;
 	 

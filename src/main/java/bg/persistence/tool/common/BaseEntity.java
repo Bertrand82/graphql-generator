@@ -4,20 +4,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.GenericGenerator;
  
 @MappedSuperclass
 public  class BaseEntity {
  
 		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		@GeneratedValue(generator = "uuid")
+		@GenericGenerator(name = "uuid", strategy = "uuid2")
 		protected String id;
 	
 	   
-		public String getId() {
+		public  String getId() {
 			return id;
 		}
 
-		public void setId(String id) {
+		public  void setId(String id) {
 			this.id = id;
 		}
 }
