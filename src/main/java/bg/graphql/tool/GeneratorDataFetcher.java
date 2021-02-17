@@ -268,7 +268,7 @@ public class GeneratorDataFetcher {
 
 	public JavaFile getJavaFileGenerator(TypeSpec.Builder classBuilder) {
 		String comment = " ";
-		comment += " doc :" + this.generator.pathSchemagraphQl + "\n";
+		comment += " doc :" + this.generator.getPathSchemagraphQl() + "\n";
 		comment += "\n";
 		classBuilder.addJavadoc(comment);
 

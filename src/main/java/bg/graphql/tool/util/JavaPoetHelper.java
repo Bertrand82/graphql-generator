@@ -1,5 +1,6 @@
 package bg.graphql.tool.util;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.lang.model.element.Modifier;
@@ -87,6 +88,8 @@ public class JavaPoetHelper {
 			return ClassName.get(String.class);
 		} else if (name.equalsIgnoreCase("Date")) {
 			return ClassName.get(Long.class);
+		} else if (name.equalsIgnoreCase("DateTime")) {
+			return ClassName.get(Date.class);
 		}else {
 			return ClassName.get(packageName,name);
 		}		
