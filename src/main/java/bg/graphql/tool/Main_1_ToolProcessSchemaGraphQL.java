@@ -12,6 +12,8 @@ import graphql.kickstart.tools.SchemaParserBuilder;
 import graphql.language.Document;
 import graphql.parser.Parser;
 
+
+@Deprecated
 public class Main_1_ToolProcessSchemaGraphQL {
 /**
  * Input : the schema graphQl

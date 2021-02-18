@@ -8,17 +8,16 @@ import java.util.logging.Logger;
 
 import bg.persistence.tool.ParserPackageEntities;
 import bg.util.tools.CompilerFileInLine;
+/**
+ * Entry Point of the generation of spring stuff from graphQL
+ * @author bg
+ *
+ */
+public class GenerateModelRepositoryControllerFromGraphQL {
 
-public class Main_full {
+	private static Logger logger = Logger.getLogger(GenerateModelRepositoryControllerFromGraphQL.class.getName());
 
-	private static Logger logger = Logger.getLogger(Main_full.class.getName());
 
-	public static void main(String[] args) throws Exception{
-		String pathGraphQL = "/schema/schema.graphqls";
-		File dirGeneratedModel = new File("generated11");
-		File dirSrcGeneratedSpring = new File("generated33");
-		processGenerationFullFromGraphQl(pathGraphQL,dirGeneratedModel,dirSrcGeneratedSpring );
-	}
 	
 	public static void processGenerationFullFromGraphQl(String pathGraphQL,File dirGeneratedModel ,File dirSrcGeneratedSpring ) throws Exception{
 		
