@@ -9,6 +9,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.tools.Diagnostic;
@@ -18,27 +19,37 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
-
-
 public class FileInLineCompiler {
 
+	private static HashMap<File, FileInLineCompiler> hMap = new HashMap<File, FileInLineCompiler>();
 
-	public static URLClassLoader classLoader ;
-	static {
+	public static FileInLineCompiler getInstance(String dirPath) {
+		File dirRoot = new File(dirPath);
+		return getInstance(dirRoot);
+	}
+
+	public static FileInLineCompiler getInstance(File dirRoot) {
+		FileInLineCompiler f = hMap.get(dirRoot);
+		if (f == null) {
+			f = new FileInLineCompiler(dirRoot);
+		}
+		return f;
+	}
+
+	public URLClassLoader classLoader;
+
+	private FileInLineCompiler(File dir) {
+		hMap.put(dir, this);
 		try {
-			classLoader= new URLClassLoader(new URL[] { new File("./").toURI().toURL() });
+			classLoader = new URLClassLoader(new URL[] { dir.toURI().toURL() });
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
-		}	
+		}
 	}
-	
-	
-	public static boolean compileFile(File fileJava) {
+
+	public boolean compileFile(File fileJava) {
 		try {
 
-			/**
-			 * Compilation Requirements
-			 *********************************************************************************************/
 			DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<JavaFileObject>();
 			JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 			StandardJavaFileManager fileManager = compiler.getStandardFileManager(diagnostics, null, null);
@@ -49,8 +60,10 @@ public class FileInLineCompiler {
 			optionList.add("-classpath");
 			optionList.add(System.getProperty("java.class.path") + File.pathSeparator + "dist/InlineCompiler.jar");
 
-			Iterable<? extends JavaFileObject> compilationUnit = fileManager.getJavaFileObjectsFromFiles(Arrays.asList(fileJava));
-			JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnostics, optionList, null,	compilationUnit);
+			Iterable<? extends JavaFileObject> compilationUnit = fileManager
+					.getJavaFileObjectsFromFiles(Arrays.asList(fileJava));
+			JavaCompiler.CompilationTask compilationTask = compiler.getTask(null, fileManager, diagnostics, optionList,
+					null, compilationUnit);
 			boolean compilationPerformed = compilationTask.call();
 			for (Diagnostic<? extends JavaFileObject> diagnostic : diagnostics.getDiagnostics()) {
 				System.out.format("Error on line %d in %s%n", diagnostic.getLineNumber(),
@@ -63,9 +76,5 @@ public class FileInLineCompiler {
 			return false;
 		}
 	}
-	
-	
-	
-	
 
 }

@@ -15,19 +15,20 @@ import org.junit.Test;
 
 public class FileInLineCompilerTest {
 
-	
+	File dirTestTemp = new File("./generatedTempTest");
 	@Test
 	public void test1() throws Exception {
 		
 		File helloWorldJava = createFileTest();
-		boolean isCompilationOk = FileInLineCompiler.compileFile(helloWorldJava);
+		
+		boolean isCompilationOk = FileInLineCompiler.getInstance(dirTestTemp).compileFile(helloWorldJava);
 		Assert.assertTrue(isCompilationOk);
 		String sRetour = processClassTest();
 		Assert.assertEquals("Hello", sRetour);
 	}
 	
 	
-	private static File createFileTest() {
+	private  File createFileTest() {
 		StringBuilder sb = new StringBuilder(64);
 		sb.append("package testcompile;\n");
 		sb.append("public class HelloWorld implements "+DoStuff.class.getName()+" {\n");
@@ -37,7 +38,7 @@ public class FileInLineCompilerTest {
 		sb.append("    }\n");
 		sb.append("}\n");
 		System.out.println("" + sb);
-		File helloWorldJava = new File("testcompile/HelloWorld.java");
+		File helloWorldJava = new File(dirTestTemp,"testcompile/HelloWorld.java");
 		if (helloWorldJava.getParentFile().exists() || helloWorldJava.getParentFile().mkdirs()) {
 
 			Writer writer = null;
@@ -58,7 +59,7 @@ public class FileInLineCompilerTest {
 		return helloWorldJava;
 	}
 	
-	private static String processClassTest() throws Exception{
+	private  String processClassTest() throws Exception{
 		/**
 		 * Load and execute
 		 *************************************************************************************************/
@@ -67,7 +68,7 @@ public class FileInLineCompilerTest {
 		// compiled
 		// classes, this should point to the top of the package structure!
 		// Load the class from the classloader by name....
-		Class<?> loadedClass = FileInLineCompiler.classLoader.loadClass("testcompile.HelloWorld");
+		Class<?> loadedClass = FileInLineCompiler.getInstance(dirTestTemp).classLoader.loadClass("testcompile.HelloWorld");
 		// Create a new instance...
 		Object obj = loadedClass.getConstructors()[0].newInstance();
 		// Santity check
