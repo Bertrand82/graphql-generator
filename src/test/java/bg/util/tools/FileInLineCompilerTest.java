@@ -25,9 +25,7 @@ public class FileInLineCompilerTest {
 		String sRetour = processClassTest();
 		Assert.assertEquals("Hello", sRetour);
 	}
-	public static void main(String[] args)throws Exception {
-		
-	}
+	
 	
 	private static File createFileTest() {
 		StringBuilder sb = new StringBuilder(64);
