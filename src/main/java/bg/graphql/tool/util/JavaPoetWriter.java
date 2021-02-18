@@ -4,6 +4,7 @@ package bg.graphql.tool.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.squareup.javapoet.JavaFile;
@@ -29,11 +30,17 @@ public class JavaPoetWriter {
 	/**
 	 * @param pJavafile
 	 */
-	public void write(final JavaFile javafile) {
+	public File write(final JavaFile javafile) {
 		try {
-			javafile.writeTo(dir);			
+			javafile.writeTo(dir);
+			Path outputDirectory = dir.toPath();
+			
+			Path outputPath = outputDirectory.resolve(javafile.packageName.replace('.', File.separatorChar)).resolve(javafile.typeSpec.name + ".java");
+			File file = outputPath.toFile();
+			return file;
 		} catch (final IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 

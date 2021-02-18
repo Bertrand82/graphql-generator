@@ -14,7 +14,7 @@
             <basic name="title"/>
             <basic name="text"/>
             <basic name="category"/>
-            <many-to-one name="author" fetch="LAZY"/>
+           
         </attributes>
     </entity>
     <entity name="author" class="bg.spring.generated.pojo.Author">

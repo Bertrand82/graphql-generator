@@ -42,10 +42,19 @@ public class ParserPackageEntities {
 	private String packageName;
 	private Set<String> packageNameVersions = new HashSet();
 	private static Logger logger = Logger.getLogger(ParserPackageEntities.class.getName());
-	public ParserPackageEntities(String packageName) throws Exception {
+/**
+ * 
+ * @param packageName
+ * @throws Exception
+ */
+	public ParserPackageEntities(String packageName) throws Exception{
+		this(packageName,getClassesFromFolders(packageName) );
+		
+	}
+	public ParserPackageEntities(String packageName, List<Class<?>> classes) throws Exception {
 		logger.info("------------------------------  Parse package : >" + packageName + "<");
 		this.packageName = packageName;
-		List<ClassGeneratorItem> listAll = parsePackageAllClasses();
+		List<ClassGeneratorItem> listAll = parsePackageAllClasses(classes);
 		extractPackage(listAll);
 		ManagerClassEntities.instance.setListAllClasses(listAll);
 		ManagerClassEntities.instance.processBasePojo(packageName);
@@ -71,6 +80,10 @@ public class ParserPackageEntities {
 	}
 
 	public static  void generateHibernateXMLMapping(File dirDest,  List<ClassGeneratorItem> listEntities) {
+		if(listEntities.size() == 0) {
+			System.err.println("ListEntities size  =0");
+			throw new RuntimeException("No Entities To Process!!! ");
+		}
 		String packageName = listEntities.get(0).getPackageName();
 		HibernateMapping hibernateMapping = new HibernateMapping();
 		hibernateMapping.setPackageStr(packageName);
@@ -212,8 +225,8 @@ public class ParserPackageEntities {
 		return new File(outputPath.toUri());
 	}
 
-	private List<ClassGeneratorItem> parsePackageAllClasses() throws Exception {
-		Set<Class<?>> classes = getClassesFromFolders(packageName);
+	private List<ClassGeneratorItem> parsePackageAllClasses(List<Class<?>> classes) throws Exception {
+		
 		logger.info("ParserPAckageEntities.parsePackage ClassLoader : " + this.getClass().getClassLoader() + "   classes from folder packageName "+packageName+" size:"
 				+ classes.size());
 		if (classes.size() == 0) {
@@ -228,21 +241,22 @@ public class ParserPackageEntities {
 		return listClassEntityItems;
 	}
 
-	private Set<Class<?>> getAllClassesFromJars() {
+	private List<Class<?>> getAllClassesFromJars() {
 		logger.info("getClassesFromJars start --------------------------- ");
 		Reflections reflections = new Reflections(this.packageName, new SubTypesScanner(false));
-
+		List<Class<?>>  lisClasses = new ArrayList<Class<?>>();
 		Set<Class<?>> allClasses = reflections.getSubTypesOf(Object.class);
+		lisClasses.addAll(allClasses);
 		@SuppressWarnings("rawtypes")
 		Set<Class<? extends Enum>> enumClasses = reflections.getSubTypesOf(Enum.class);
 
 		enumClasses.forEach((e) -> {
 			Class<?> ee = (Class<?>) e;
-			allClasses.add(ee);
+			lisClasses.add(ee);
 		});
 
 		
-		return allClasses;
+		return lisClasses;
 	}
 
 	/**
@@ -254,7 +268,7 @@ public class ParserPackageEntities {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
-	private static Set<Class<?>> getClassesFromFolders(String packageName) throws Exception {
+	private static List<Class<?>> getClassesFromFolders(String packageName) throws Exception {
 		// ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
 		String path = packageName.replace('.', '/');
@@ -263,7 +277,7 @@ public class ParserPackageEntities {
 		List<File> dirs = new ArrayList<>();
 		dirs.addAll(getDirsFromPah(path));
 
-		Set<Class<?>> classes = new HashSet<>();
+		List<Class<?>> classes = new ArrayList<>();
 		for (File directory : dirs) {
 			classes.addAll(findClassesInDirectory(directory, packageName));
 		}

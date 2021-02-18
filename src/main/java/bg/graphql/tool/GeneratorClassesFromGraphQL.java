@@ -19,21 +19,22 @@ import graphql.parser.Parser;
 public class GeneratorClassesFromGraphQL {
 	private final String pathSchemagraphQl;
 	private final List<GeneratorClassType> listGeneratorClassType = new ArrayList<GeneratorClassType>();
-	private final File dirOut;
-	private final JavaPoetWriter javapoetWritter ;
+	private final File dirSrcOut;
+	private final JavaPoetWriter javapoetWritter;
+	List<File> listFileEntities = new ArrayList<File>();
 
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl) throws Exception {
 		this(pathSchemagraphQl, new File("generated1"));
 	}
 
-	public GeneratorClassesFromGraphQL(String pathSchemagraphQl, File dirOut) throws Exception {
+	public GeneratorClassesFromGraphQL(String pathSchemagraphQl, File dirOut2) throws Exception {
 
 		System.out.println("Start processing graphQl " + pathSchemagraphQl);
-		this.dirOut = dirOut;
-		javapoetWritter = new JavaPoetWriter(dirOut);
+		this.dirSrcOut = dirOut2;
+		javapoetWritter = new JavaPoetWriter(this.dirSrcOut);
 		this.pathSchemagraphQl = pathSchemagraphQl;
 		init();
-		System.out.println("end   dir out : " + dirOut.getPath());
+		System.out.println("end   dir out : " + dirSrcOut.getPath());
 	}
 
 	private void init() throws Exception {
@@ -45,6 +46,7 @@ public class GeneratorClassesFromGraphQL {
 			// System.out.println("doc child "+e.getClass().getName() + " " + e);
 		});
 		List<ObjectTypeDefinition> listQueryMutation = new ArrayList<>();
+
 		for (Definition<?> definition : document.getDefinitions()) {
 			if (definition instanceof ObjectTypeDefinition) {
 				ObjectTypeDefinition oDefinition = (ObjectTypeDefinition) definition;
@@ -59,7 +61,8 @@ public class GeneratorClassesFromGraphQL {
 				} else {
 					GeneratorClassType generatorType = new GeneratorClassType(oDefinition);
 					listGeneratorClassType.add(generatorType);
-					javapoetWritter.write(generatorType.getJavaFileGenerator(pathSchemagraphQl));
+					File fileJavaSrc = javapoetWritter.write(generatorType.getJavaFileGenerator(pathSchemagraphQl));
+					this.listFileEntities.add(fileJavaSrc);
 				}
 
 			}
@@ -81,6 +84,15 @@ public class GeneratorClassesFromGraphQL {
 
 	public String getPathSchemagraphQl() {
 		return pathSchemagraphQl;
+	}
+
+	public File getDirSrcOut() {
+		return dirSrcOut;
+	}
+
+	public File[] getFileEntities() {
+		File[] fArray = new File[listFileEntities.size()];
+		return listFileEntities.toArray(fArray);
 	}
 
 }

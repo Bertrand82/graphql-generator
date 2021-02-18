@@ -21,7 +21,7 @@ public class FileInLineCompilerTest {
 		
 		File helloWorldJava = createFileTest();
 		
-		boolean isCompilationOk = FileInLineCompiler.getInstance(dirTestTemp).compileFile(helloWorldJava);
+		boolean isCompilationOk = FileInLineCompiler.getInstance(dirTestTemp).compileFile(helloWorldJava.getAbsoluteFile());
 		Assert.assertTrue(isCompilationOk);
 		String sRetour = processClassTest();
 		Assert.assertEquals("Hello", sRetour);
@@ -39,6 +39,7 @@ public class FileInLineCompilerTest {
 		sb.append("}\n");
 		System.out.println("" + sb);
 		File helloWorldJava = new File(dirTestTemp,"testcompile/HelloWorld.java");
+		System.out.println("helloWorldJava getName() : " + helloWorldJava.getName());
 		if (helloWorldJava.getParentFile().exists() || helloWorldJava.getParentFile().mkdirs()) {
 
 			Writer writer = null;
