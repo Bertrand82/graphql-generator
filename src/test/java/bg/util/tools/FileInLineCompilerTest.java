@@ -21,7 +21,7 @@ public class FileInLineCompilerTest {
 		
 		File helloWorldJava = createFileTest();
 		
-		boolean isCompilationOk = FileInLineCompiler.getInstance(dirTestTemp).compileFile(helloWorldJava.getAbsoluteFile());
+		boolean isCompilationOk = CompilerFileInLine.getInstance(dirTestTemp).compileFile(helloWorldJava.getAbsoluteFile());
 		Assert.assertTrue(isCompilationOk);
 		String sRetour = processClassTest();
 		Assert.assertEquals("Hello", sRetour);
@@ -69,7 +69,7 @@ public class FileInLineCompilerTest {
 		// compiled
 		// classes, this should point to the top of the package structure!
 		// Load the class from the classloader by name....
-		Class<?> loadedClass = FileInLineCompiler.getInstance(dirTestTemp).classLoader.loadClass("testcompile.HelloWorld");
+		Class<?> loadedClass = CompilerFileInLine.getInstance(dirTestTemp).classLoader.loadClass("testcompile.HelloWorld");
 		// Create a new instance...
 		Object obj = loadedClass.getConstructors()[0].newInstance();
 		// Santity check

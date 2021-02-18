@@ -19,28 +19,28 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
-public class FileInLineCompiler {
+public class CompilerFileInLine {
 
-	private static HashMap<File, FileInLineCompiler> hMap = new HashMap<File, FileInLineCompiler>();
+	private static HashMap<File, CompilerFileInLine> hMap = new HashMap<File, CompilerFileInLine>();
 
 	private File dirClasses = new File("classesGeneratedByBg");
 	
-	public static FileInLineCompiler getInstance(String dirPath) {
+	public static CompilerFileInLine getInstance(String dirPath) {
 		File dirClassesRoot = new File(dirPath);
 		return getInstance(dirClassesRoot);
 	}
 
-	public static FileInLineCompiler getInstance(File dirClassesRoot) {
-		FileInLineCompiler f = hMap.get(dirClassesRoot);
+	public static CompilerFileInLine getInstance(File dirClassesRoot) {
+		CompilerFileInLine f = hMap.get(dirClassesRoot);
 		if (f == null) {
-			f = new FileInLineCompiler(dirClassesRoot);
+			f = new CompilerFileInLine(dirClassesRoot);
 		}
 		return f;
 	}
 
 	public URLClassLoader classLoader;
 
-	private FileInLineCompiler(File dirClasses) {
+	private CompilerFileInLine(File dirClasses) {
 		hMap.put(dirClasses, this);
 		this.dirClasses=dirClasses;
 		try {
@@ -82,12 +82,11 @@ public class FileInLineCompiler {
 	}
 	public  List<Class<?>> getClasses(File[] javasrces) {
 		for(File f :javasrces) {
-			System.out.println("xxxx fileSrc:  exists:  "+f.exists()+"  | "+f.getName());
+			//System.out.println("xxxx fileSrc:  exists:  "+f.exists()+"  | "+f.getName());
 		}
 		this.compileFile(javasrces);
 		List<String> names = getJavaClassNames(this.dirClasses);
-		System.out.println(" names:::: "+names.size()+"   "+names);
-		 List<Class<?>>  classes = new ArrayList<Class<?>>();
+		List<Class<?>>  classes = new ArrayList<Class<?>>();
 		for (int i = 0; i < names.size(); i++) {
 			try {
 				Class c = this.classLoader.loadClass(names.get(i));
@@ -113,12 +112,11 @@ public class FileInLineCompiler {
 				list.add(s);
 			}
 		}
-		System.out.println(" -------------- "+this.dirClasses.getAbsolutePath()+"   "+packageName+"     "+dirClasses2.getName()+"   "+list.size());
 		return list;
 	}
 
-	public static FileInLineCompiler getInstance() {
-		return FileInLineCompiler.getInstance("generatedDirClassCompiled");
+	public static CompilerFileInLine getInstance() {
+		return CompilerFileInLine.getInstance("generatedDirClassCompiled");
 	}
 
 

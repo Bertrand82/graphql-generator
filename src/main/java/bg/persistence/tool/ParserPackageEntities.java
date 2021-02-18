@@ -52,14 +52,13 @@ public class ParserPackageEntities {
 		
 	}
 	public ParserPackageEntities(String packageName, List<Class<?>> classes) throws Exception {
-		logger.info("------------------------------  Parse package : >" + packageName + "<");
 		this.packageName = packageName;
 		List<ClassGeneratorItem> listAll = parsePackageAllClasses(classes);
 		extractPackage(listAll);
 		ManagerClassEntities.instance.setListAllClasses(listAll);
 		ManagerClassEntities.instance.processBasePojo(packageName);
 		int nbClasses = ManagerClassEntities.instance.getListBaseClassEntityItems().size();
-		logger.info("------------------------------  Parse package : >" + packageName + "<  nbClasses:  " + nbClasses);
+		logger.info("------------------------------  Parse package : " + packageName + "  nbClasses:  " + nbClasses);
 		listAll.forEach((c)->logger.info("------------>  "+c));
 	}
 	

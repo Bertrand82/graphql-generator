@@ -4,6 +4,8 @@ import java.io.File;
 
 import bg.persistence.tool.ParserPackageEntities;
 
+
+@Deprecated
 public class Main_2_ProcessEntities {
 	
 	/**

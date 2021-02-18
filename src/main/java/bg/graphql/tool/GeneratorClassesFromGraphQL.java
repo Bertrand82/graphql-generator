@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.squareup.javapoet.TypeName;
 
@@ -23,18 +24,21 @@ public class GeneratorClassesFromGraphQL {
 	private final JavaPoetWriter javapoetWritter;
 	List<File> listFileEntities = new ArrayList<File>();
 
+	private static Logger logger = Logger.getLogger(GeneratorClassesFromGraphQL.class.getName());
+
+
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl) throws Exception {
 		this(pathSchemagraphQl, new File("generated1"));
 	}
 
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl, File dirOut2) throws Exception {
 
-		System.out.println("Start processing graphQl " + pathSchemagraphQl);
+		logger.info("Start processing graphQl : " + pathSchemagraphQl);
 		this.dirSrcOut = dirOut2;
 		javapoetWritter = new JavaPoetWriter(this.dirSrcOut);
 		this.pathSchemagraphQl = pathSchemagraphQl;
 		init();
-		System.out.println("end   dir out : " + dirSrcOut.getPath());
+		logger.info("End dirSrcOut : " + dirSrcOut.getPath());
 	}
 
 	private void init() throws Exception {

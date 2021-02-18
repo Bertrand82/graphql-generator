@@ -64,7 +64,6 @@ public class GeneratorDataFetcher {
 
 		for (ObjectTypeDefinition objectTypeDefinition : listDefinition) {
 			for (FieldDefinition fieldDefinition : objectTypeDefinition.getFieldDefinitions()) {
-				System.err.println("objectTypeDefinition name ----" + objectTypeDefinition.getName());
 				BeanMethod umb = generateMethod_(getType(objectTypeDefinition.getName()), fieldDefinition);
 				lisBeanMethod.add(umb);
 			}
