@@ -1,6 +1,8 @@
 package bg.graphql.tool;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -26,23 +28,25 @@ public class GeneratorClassesFromGraphQL {
 
 	private static Logger logger = Logger.getLogger(GeneratorClassesFromGraphQL.class.getName());
 
-
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl) throws Exception {
 		this(pathSchemagraphQl, new File("generated1"));
 	}
 
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl, File dirOut2) throws Exception {
+		this( GeneratorClassesFromGraphQL.class.getResourceAsStream(pathSchemagraphQl),pathSchemagraphQl,dirOut2);
+	}
+	public GeneratorClassesFromGraphQL(InputStream inStream ,String pathSchemagraphQl, File dirOut2) throws Exception {
 
 		logger.info("Start processing graphQl : " + pathSchemagraphQl);
 		this.dirSrcOut = dirOut2;
 		javapoetWritter = new JavaPoetWriter(this.dirSrcOut);
 		this.pathSchemagraphQl = pathSchemagraphQl;
-		init();
+		process(inStream);
+		inStream.close();
 		logger.info("End dirSrcOut : " + dirSrcOut.getPath());
 	}
 
-	private void init() throws Exception {
-		InputStream inStream = GeneratorClassesFromGraphQL.class.getResourceAsStream(pathSchemagraphQl);
+	private void process(InputStream inStream) throws Exception {
 		Reader readerSchema = new InputStreamReader(inStream);
 		Parser parser = new Parser();
 		Document document = parser.parseDocument(readerSchema);
@@ -75,6 +79,8 @@ public class GeneratorClassesFromGraphQL {
 		javapoetWritter.write(generatorDataFetcher.getListJavaFiles());
 
 	}
+
+	
 
 	public boolean isFieldPrimitif(TypeName retourTypeNameSpan, String argumentName) {
 		String cArgumentName = JavaPoetHelper.capitalizeFirstLetter(argumentName);

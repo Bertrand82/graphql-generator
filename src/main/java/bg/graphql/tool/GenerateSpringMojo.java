@@ -1,20 +1,22 @@
-package bg.graphql.tool.maven;
+package bg.graphql.tool;
 
 import java.io.File;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import bg.graphql.tool.GenerateModelRepositoryControllerFromGraphQL;
 /**
  * Genere à partir d'un graphQL une application spring
- * @author w1
+ * @author bg
  *
  */
-public class GraphqlMojo extends AbstractMojo{
+@Mojo( name = "generateSpring")
+public class GenerateSpringMojo extends AbstractMojo{
 
 	@Parameter(readonly = true, defaultValue = "${project}")
 	private MavenProject project;
