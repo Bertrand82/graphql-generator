@@ -20,7 +20,6 @@ public class Infobg {
 	public String index() {
 		return "Application de test de generation de graphQL\n"
 				+"<br/> #  data.rest.base-path : "+basePath+"\n"
-				+"<br/> #  data.rest.base-path : "+basePath+"\n"
 				+"<br/> #  graphiql /graphiql \n"
 				+"<br/> # swagger ui :   /swagger-ui/index.html \n";
 				

@@ -29,6 +29,10 @@ public class CompilerFileInLine {
 		File dirClassesRoot = new File(dirPath);
 		return getInstance(dirClassesRoot);
 	}
+	
+	public static CompilerFileInLine getInstance() {
+		return CompilerFileInLine.getInstance("target/generatedDirClassCompiledTemp");
+	}
 
 	public static CompilerFileInLine getInstance(File dirClassesRoot) {
 		CompilerFileInLine f = hMap.get(dirClassesRoot);
@@ -39,12 +43,16 @@ public class CompilerFileInLine {
 	}
 
 	public URLClassLoader classLoader;
-
+	/**
+	 * Constructeur private 
+	 * @param dirClasses
+	 */
 	private CompilerFileInLine(File dirClasses) {
 		hMap.put(dirClasses, this);
 		this.dirClasses=dirClasses;
+		this.dirClasses.mkdirs();
 		try {
-			classLoader = new URLClassLoader(new URL[] { dirClasses.toURI().toURL() });
+			this.classLoader = new URLClassLoader(new URL[] { this.dirClasses.toURI().toURL() });
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -74,6 +82,9 @@ public class CompilerFileInLine {
 						diagnostic.getSource().toUri());
 			}
 			fileManager.close();
+			System.err.println("Diagnostic size :"+diagnostics.getDiagnostics().size());
+			System.err.println("Classes size :"+this.getJavaClassNames(this.dirClasses).size());
+			
 			return compilationPerformed;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +103,7 @@ public class CompilerFileInLine {
 				Class c = this.classLoader.loadClass(names.get(i));
 				classes.add(c) ;
 			} catch (ClassNotFoundException e) {
-				System.err.println("Bloop "+e.getClass()+"  "+e.getMessage());;
+				System.err.println("CNotFoundException :"+e.getClass()+"  "+e.getMessage());;
 			}
 		}
 		return classes;
@@ -115,9 +126,7 @@ public class CompilerFileInLine {
 		return list;
 	}
 
-	public static CompilerFileInLine getInstance() {
-		return CompilerFileInLine.getInstance("generatedDirClassCompiled");
-	}
+
 
 
 }
