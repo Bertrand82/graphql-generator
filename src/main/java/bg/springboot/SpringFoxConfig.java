@@ -14,14 +14,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
- * http://localhost:8081/v2/api-docs
- * 
- * @author w1
+ * @author bg
  *
  */
 @Configuration
-//@EnableSwagger2
-
 public class SpringFoxConfig {
 
 	@Bean

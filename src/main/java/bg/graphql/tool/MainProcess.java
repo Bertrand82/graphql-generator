@@ -8,7 +8,8 @@ public class MainProcess {
 		String pathGraphQL = "/schema/schema.graphqls";
 		File dirGeneratedModel = new File("generated11");
 		File dirSrcGeneratedSpring = new File("generated33");
-		GenerateModelRepositoryControllerFromGraphQL.processGenerationFullFromGraphQl(pathGraphQL,dirGeneratedModel,dirSrcGeneratedSpring );
+		File dirResourceGeneratedHibernate = new File("generated44");
+		GenerateModelRepositoryControllerFromGraphQL.processGenerationFullFromGraphQl(pathGraphQL,dirGeneratedModel,dirSrcGeneratedSpring ,dirResourceGeneratedHibernate);
 
 	}
 

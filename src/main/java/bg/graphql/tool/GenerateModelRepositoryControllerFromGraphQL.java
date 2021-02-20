@@ -19,7 +19,7 @@ public class GenerateModelRepositoryControllerFromGraphQL {
 
 
 	
-	public static void processGenerationFullFromGraphQl(String pathGraphQL,File dirGeneratedModel ,File dirSrcGeneratedSpring ) throws Exception{
+	public static void processGenerationFullFromGraphQl(String pathGraphQL,File dirGeneratedModel ,File dirSrcGeneratedSpring, File dirResourcesGeneratedHibernate ) throws Exception{
 		
 		// GraphQl Processing et génération des sources
 		GeneratorClassesFromGraphQL generator = new GeneratorClassesFromGraphQL(pathGraphQL,dirGeneratedModel);
@@ -33,7 +33,7 @@ public class GenerateModelRepositoryControllerFromGraphQL {
 		dirSrcGeneratedSpring.mkdirs();
 		// Lectures des "entities" et generation de la stack Spring
 		ParserPackageEntities parserPackageEntities = new ParserPackageEntities(PackageNameService.getPackageModelTemp(),classesEntities);
-		parserPackageEntities.generateHibernateXMLMapping(dirSrcGeneratedSpring);
+		parserPackageEntities.generateHibernateXMLMapping(dirResourcesGeneratedHibernate);
 		parserPackageEntities.generateJavaSources(dirSrcGeneratedSpring);
 	}
 	

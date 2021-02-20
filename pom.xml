@@ -6,11 +6,11 @@
 	<artifactId>graphql-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>graphqlgenerator2 Maven Mojo</name>
+	<name>graphql-generator</name>
   	<url>http://maven.apache.org</url>
 	<properties>
-		<maven.compiler.source>13</maven.compiler.source>
-		<maven.compiler.target>13</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
 		<swagger2markup.version>1.2.0</swagger2markup.version>
 		<asciidoctor.input.directory>${project.basedir}/src/docs/api/asciidoc</asciidoctor.input.directory>
 
