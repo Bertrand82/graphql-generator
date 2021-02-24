@@ -7,10 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>graphql-generator</name>
-  	<url>http://maven.apache.org</url>
+	<url>http://maven.apache.org</url>
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>15</maven.compiler.target>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<swagger2markup.version>1.2.0</swagger2markup.version>
 		<asciidoctor.input.directory>${project.basedir}/src/docs/api/asciidoc</asciidoctor.input.directory>
 
@@ -44,7 +44,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
 				<!-- version>2.0.5.RELEASE</version -->
-				<version>2.3.8.RELEASE</version>
+				<version>2.4.2</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -128,7 +128,6 @@
 			<artifactId>federation-graphql-java-support</artifactId>
 			<version>0.6.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.squareup/javapoet -->
 		<dependency>
 			<groupId>com.squareup</groupId>
 			<artifactId>javapoet</artifactId>
@@ -143,7 +142,6 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>2.2.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
 		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
@@ -175,32 +173,32 @@
 			<version>3.0.0</version>
 		</dependency>
 
-
-
-		
-
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>3.8.0</version>
 		</dependency>
 
-
-		
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
 			<version>3.6.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
 			<artifactId>maven-plugin-annotations</artifactId>
 			<version>3.4</version>
 			<scope>provided</scope>
 		</dependency>
-
-
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -208,8 +206,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.3.8.RELEASE</version>
-			</plugin>			
+				<version>2.4.2</version>
+			</plugin>
 		</plugins>
 	</build>
 
