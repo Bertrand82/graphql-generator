@@ -33,8 +33,35 @@ public class GeneratorClassesFromGraphQL {
 	}
 
 	public GeneratorClassesFromGraphQL(String pathSchemagraphQl, File dirOut2) throws Exception {
-		this( GeneratorClassesFromGraphQL.class.getResourceAsStream(pathSchemagraphQl),pathSchemagraphQl,dirOut2);
+		this( getRessourceAsStream(pathSchemagraphQl) ,pathSchemagraphQl,dirOut2);
 	}
+	
+	
+	private static InputStream getRessourceAsStream(String pathSchemagraphQl) throws Exception {
+		InputStream in = GeneratorClassesFromGraphQL.class.getResourceAsStream(pathSchemagraphQl);
+		if (in == null) {
+			logger.info("No find in classLoader "+pathSchemagraphQl);			
+			in = getFileAsStream( new File(".",pathSchemagraphQl));					
+		}
+		if (in == null) {
+			File dir = new File(".","src/main/resources");
+			in = getFileAsStream( new File(dir,pathSchemagraphQl));	
+		}
+		if (in == null) {
+			throw new Exception("No stream for "+pathSchemagraphQl);
+		}
+		return in;
+	}
+
+	private static InputStream getFileAsStream(File file) throws Exception{
+		InputStream in = null;
+		logger.info("Start processing graphQl by file : " + file.getAbsolutePath()+" file exists :"+file.exists());
+		if (file.exists()){
+			in = new FileInputStream(file);			
+		}
+		return in;
+	}
+
 	public GeneratorClassesFromGraphQL(InputStream inStream ,String pathSchemagraphQl, File dirOut2) throws Exception {
 
 		logger.info("Start processing graphQl : " + pathSchemagraphQl);

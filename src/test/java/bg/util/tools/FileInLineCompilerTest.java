@@ -19,9 +19,9 @@ public class FileInLineCompilerTest {
 	@Test
 	public void test1() throws Exception {
 		
-		File helloWorldJava = createFileTest();
+		File classJavaGeneratedTest = createFileTest();
 		
-		boolean isCompilationOk = CompilerFileInLine.getInstance(dirTestTemp).compileFile(helloWorldJava.getAbsoluteFile());
+		boolean isCompilationOk = CompilerFileInLine.getInstance(dirTestTemp).compileFile(classJavaGeneratedTest.getAbsoluteFile());
 		Assert.assertTrue(isCompilationOk);
 		String sRetour = processClassTest();
 		Assert.assertEquals("Hello", sRetour);
@@ -31,20 +31,20 @@ public class FileInLineCompilerTest {
 	private  File createFileTest() {
 		StringBuilder sb = new StringBuilder(64);
 		sb.append("package testcompile;\n");
-		sb.append("public class HelloWorld implements "+DoStuff.class.getName()+" {\n");
+		sb.append("public class ClassJavaGeneratedTest implements "+DoStuff.class.getName()+" {\n");
 		sb.append("    public String doStuff() {\n");
-		sb.append("        System.out.println(\"Hello world\");\n");
+		sb.append("        System.out.println(\"Hello world from generated source class\");\n");
 		sb.append("        return(\"Hello\");\n");
 		sb.append("    }\n");
 		sb.append("}\n");
 		System.out.println("" + sb);
-		File helloWorldJava = new File(dirTestTemp,"testcompile/HelloWorld.java");
-		System.out.println("helloWorldJava getName() : " + helloWorldJava.getName());
-		if (helloWorldJava.getParentFile().exists() || helloWorldJava.getParentFile().mkdirs()) {
+		File classGeneratedTest = new File(dirTestTemp,"testcompile/ClassJavaGeneratedTest.java");
+		System.out.println("ClassJavaGeneratedTest getName() : " + classGeneratedTest.getName());
+		if (classGeneratedTest.getParentFile().exists() || classGeneratedTest.getParentFile().mkdirs()) {
 
 			Writer writer = null;
 			try {
-				writer = new FileWriter(helloWorldJava);
+				writer = new FileWriter(classGeneratedTest);
 				writer.write(sb.toString());
 				writer.flush();
 			} catch (IOException e) {
@@ -57,7 +57,7 @@ public class FileInLineCompilerTest {
 				}
 			}
 		}
-		return helloWorldJava;
+		return classGeneratedTest;
 	}
 	
 	private  String processClassTest() throws Exception{
