@@ -2,9 +2,9 @@
 Generate a spring boot application from graphQL schema
 
 input : a schema graphQL (a.graphqls file)of GraphQL
-Transformation 1: Generate java class (the "model") from type 
-Transformation 2: Generate java spring entities, repository , mapping orm from mmodel
-Transformation 3: Generate spring graphQl Endpoint from Query and Mutation of graphQl
+* Transformation 1: Generate java class (the "model") from type 
+* Transformation 2: Generate java spring entities, repository , mapping orm from mmodel
+* Transformation 3: Generate spring graphQl Endpoint from Query and Mutation of graphQl
 
 In fact, the model is useless. Its goal is only to generate the Spring application. 
 
