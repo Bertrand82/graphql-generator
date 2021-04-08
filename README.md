@@ -2,7 +2,7 @@
 Generate a spring boot application from graphQL schema
 
 input : a schema graphQL (a.graphqls file)of GraphQL
-* Transformation 1: Generate java class (the "model") from type 
+* Transformation 1: Generate java class (the "model") from type from graphql.
 * Transformation 2: Generate java spring entities, repository , mapping orm from mmodel
 * Transformation 3: Generate spring graphQl Endpoint from Query and Mutation of graphQl
 

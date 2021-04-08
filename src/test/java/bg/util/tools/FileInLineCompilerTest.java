@@ -69,7 +69,8 @@ public class FileInLineCompilerTest {
 		// compiled
 		// classes, this should point to the top of the package structure!
 		// Load the class from the classloader by name....
-		Class<?> loadedClass = CompilerFileInLine.getInstance(dirTestTemp).classLoader.loadClass("testcompile.HelloWorld");
+		System.out.println("processClassTes "+dirTestTemp+" exists "+dirTestTemp.exists());
+		Class<?> loadedClass = CompilerFileInLine.getInstance(dirTestTemp).classLoader.loadClass("testcompile.ClassJavaGeneratedTest");
 		// Create a new instance...
 		Object obj = loadedClass.getConstructors()[0].newInstance();
 		// Santity check
