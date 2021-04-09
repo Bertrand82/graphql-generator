@@ -1,0 +1,26 @@
+type PostBg3 {
+    id: ID!
+    title: String!
+    text: String!
+    category: String
+    AuthorBg3: AuthorBg3!
+}
+
+
+
+type AuthorBg3 {
+    id: ID!
+    name: String!
+    thumbnail: String
+    PostBg3s: [PostBg3]!
+}
+
+# The Root Query for the application
+type Query {
+    recentPostBg3s(count: Int, offset: Int): [PostBg3]!
+}
+
+# The Root Mutation for the application
+type Mutation {
+    writePostBg3(title: String!, text: String!, category: String, AuthorBg3: String!) : PostBg3!
+}

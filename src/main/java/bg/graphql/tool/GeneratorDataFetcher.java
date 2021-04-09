@@ -124,6 +124,7 @@ public class GeneratorDataFetcher {
 
 		if (typeReturn instanceof graphql.language.ListType) {
 			ListType listType = (ListType) typeReturn;
+			System.err.println("listType.getType ----- "+listType.getType());
 			String typeNameList = ((graphql.language.TypeName) listType.getType()).getName();
 			ClassName typeName1 = ClassName.get(List.class);
 			TypeName typeName2 = ClassName.get(packageName, typeNameList);
