@@ -9,9 +9,7 @@ spring:
       idle-timeout : 30000
     
   jpa:    
-     database-platform: org.hibernate.dialect.MariaDBDialect
-     mapping-resources:
-        - orm-mapping.xml
+     database-platform: org.hibernate.dialect.MariaDBDialect     
      hibernate:
        ddl-auto: update
        order_inserts: true

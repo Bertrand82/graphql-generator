@@ -1,4 +1,4 @@
-package bg.springboot;
+package bg.generator.springboot;
 
 import java.util.Arrays;
 
